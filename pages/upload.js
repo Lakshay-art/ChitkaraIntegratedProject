@@ -1,16 +1,22 @@
-import ByFormData from '../components/ByFormData';
+// import ByFormData from '../components/ByFormData';
 import Layout from '../components/Layout';
 
 import ByBlobToBase64 from '../components/ByBlobToBase64';
-import ByBase64 from '../components/ByBase64'
+import { useState } from 'react';
+// import ByBase64 from '../components/ByBase64'
 
 
 const App = () => {
+const[type,settype]=useState("videotogif");
+
+
     return (
         <>
           {/* <ByFormData/>   */}
           <Layout>
-          <ByBlobToBase64/></Layout>
+              <button onClick={()=>settype("videotogif")} > Video to Gif</button>
+              <button onClick={()=>settype("imagetogif")} > Image to Gif</button>
+          <ByBlobToBase64 type={type}/></Layout>
            {/* <ByBase64/> */}
         </>
     );

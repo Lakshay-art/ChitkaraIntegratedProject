@@ -2,6 +2,10 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap:15px;
+    gap:5px;
 
+}
+.input{
+    height: 100px;
+    width:85px;
 }
