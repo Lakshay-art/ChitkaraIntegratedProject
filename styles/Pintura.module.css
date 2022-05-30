@@ -1,0 +1,16 @@
+
+
+.filepond {
+	padding:20px 10px;
+	width:400px;
+	min-width:max-content;
+	min-height: max-content;
+	margin: 0 auto;
+	
+}
+
+@media(max-width:420px){
+	.filepond {
+		width:300px;
+	}
+	}

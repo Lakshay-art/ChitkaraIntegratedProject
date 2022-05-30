@@ -3,6 +3,8 @@ import Image from "next/image";
 import axios from "axios";
 import { server } from "../config";
 import { fetchFile } from "@ffmpeg/ffmpeg";
+import styles from "../styles/Upload.module.css";
+
 const App = (props) => {
   const [gif, setGif] = React.useState(false);
   console.log(props.ffmpeg);
@@ -82,7 +84,8 @@ const App = (props) => {
     <>
       {console.log(props.name)}
       {gif && (
-        <Image src={gif} width="60px" height="60px" unoptimized="true" />
+              <div className={styles.finaloutput}>
+        <Image src={gif} width="60px" height="60px" unoptimized="true" /></div>
       )}
     </>
   );

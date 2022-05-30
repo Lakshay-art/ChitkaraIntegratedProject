@@ -26,12 +26,19 @@ const App = (props) =>
   
   React.useEffect(async () => 
   {
+    setConvert(false);
+    setVideo(false);
+    setGif(false)
     load();
     for (let i = 1; i < 5; i++) 
     {
       array1.push({ a: `output` + ("0000" + i).slice(-3) + ".png" });
     }
-  }, []);
+    console.log(props.file);
+    if(props.file.length!=0){
+      setVideo(props.file[0].file)
+    }
+  }, [props.file]);
 
 
   const load = async () => 
@@ -107,18 +114,19 @@ const App = (props) =>
     <>
       {ready ? (
         <div>
-          {video && (
+          {/* {video && (
             <video
               controls
               width="auto"
               src={URL.createObjectURL(video)}
             >
               </video>
-          )}
-          <input className={styles.input}
+           
+          )}   {console.log(video)} */}
+          {/* <input className={styles.input}
             type="file" 
             onChange={(e) => setVideo(e.target.files?.item(0))}
-          />
+          /> */}
         </div>
       ) : (
         <></>
@@ -150,7 +158,8 @@ const App = (props) =>
                 </audio> */}
 
       {gif && (
-        <Image src={gif} width="auto" height="auto" unoptimized="true"  />
+        <div className={styles.finaloutput}>
+        <Image src={gif} width="auto" height="auto" unoptimized="true"  /></div>
       )}
     </>
   );
