@@ -20,26 +20,26 @@ const App = () => {
       setReady(true);
       return;
     }
-    
     await ffmpeg.load();
     setReady(true);
   };
-
   React.useEffect(async() => {
     load();
-    for (let i = 1; i < 13; i++) {
-      array1.push({ a: `output` + ("0000" + i).slice(-3) + ".png" });
+  const x=300;const angle=290;
+    for (let i = 1; i <30; i++) {
+      array1.push({ a: "output001" + ".png",x:(x-(10*(i))),degree:(angle-(10*i))});
     }
-   
+  //  `output` + ("0000" + i).slice(-3)
   }, []);
-
-  const convertToGif = async () => {
+  // ,x:(x-(10*i)),y:(y-(10*i))
+  const convertToGif = async (e) => {
+    e.preventDefault();
     ffmpeg.FS("writeFile", "test.mp4", await fetchFile(video));
     // await ffmpeg.run('-i',"test.mp4",'-ss',"2.0",'-f',"gif","output.gif")
     //await ffmpeg.run('-i', "test.mp4", '-vn', '-acodec', 'copy','-f','mp3' ,'output.mp3')
     //await ffmpeg.run('-i', "test.png",'-f',"gif",'output.gif')
     setConvert(false)
-    await ffmpeg.run("-i", "test.mp4","-vf","scale=iw/1.5:ih/1.5","-crf", "20" , "output%03d.png");
+    await ffmpeg.run("-i", "test.mp4","-vf","scale=iw/2:ih/2","-crf", "20" , "output%03d.png");
     console.log(ffmpeg);
     //setFfm(ffmpeg);
     setConvert(true);
@@ -67,11 +67,11 @@ const App = () => {
       )}
       <button onClick={convertToGif}>Convert</button>
       <div className={styles.flex}>
-        {convert && <Imagee key={1} name={"output001.png"} ffmpeg={ffmpeg} />}
-        {/* {convert && array1.map((data, index) => {
+        {/* {convert && <Imagee key={1} name={"output001.png"} xaxis={'29'} ffmpeg={ffmpeg} />} */}
+        {convert && array1.map((data, index) => {
           console.log(data);
-           return <Imagee key={index} name={data.a} ffmpeg={ffmpeg}/>
-        })} */}
+           return <Imagee key={index} name={data.a} ffmpeg={ffmpeg} xaxis={data.x} index={index} angle={data.degree}/>
+        })}
       </div>
 
       {/* <Image src={gif} width="300px" height="300px" unoptimized="true"/> */}

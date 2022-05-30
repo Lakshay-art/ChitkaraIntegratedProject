@@ -12,6 +12,9 @@ const App = (props) => {
     await axios
       .post(`${server}/api/upload2`, {
         link: base64data,
+        x:props.xaxis,
+        index:props.index,
+        angle:props.angle
       })
       .then(
         () => {
@@ -35,11 +38,13 @@ const App = (props) => {
       new Blob([data.buffer], { type: "image/png" })
     );
     setGif(url);
+  // {console.log(url);}
   }, []);
   return (
-    <>
+    <>  <h1>dfwe</h1>
       {console.log(props.name)}
       {gif && (
+      
         <Image src={gif} width="300px" height="300px" unoptimized="true" />
       )}
     </>

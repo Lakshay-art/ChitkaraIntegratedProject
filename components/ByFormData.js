@@ -22,7 +22,7 @@ export default function (){
     }
     return <>
     <h1>
-        cloudinary Image Upload By Post
+        cloudinary Image Upload By Postss
     </h1>
     <input type="file" onChange={(e)=>setImages(e.target.files[0])} />
     <button onClick={PreviewImage}>
