@@ -12,31 +12,54 @@ const ffmpeg = createFFmpeg(
   corePath: "/ffmpeg-core/ffmpeg-core.js",
 });
 
-let array1 = [];
-let array2 = [];
+var array2=[];
 const App = (props) => 
 {
 
   
   const [ready, setReady] = React.useState(false);
+  const [array1, setArray1] = React.useState([]);
+  // const [array2, setArray2] = React.useState([]);
   const [video, setVideo] = React.useState(false);
   const [convert, setConvert] = React.useState(false);
   const [gif, setGif] = React.useState(false);
   
-  
+  const setReady2 = React.useCallback((state) => {
+    setReady(state);
+  }, [ready]);
+  const setVideo2 = React.useCallback((state) => {
+    setVideo(state);
+  }, [video]);
+  const setConvert2 = React.useCallback((state) => {
+
+    setConvert(state);
+  }, [convert]);
+  const setGif2 = React.useCallback((state) => {
+    setGif(state);
+  }, [gif]);
+
+
   React.useEffect(async () => 
   {
-    setConvert(false);
-    setVideo(false);
-    setGif(false)
-    load();
-    for (let i = 1; i < 5; i++) 
+    //setConvert2(false);
+    //setVideo2(false);
+    //setGif2(false)
+    load(); 
+       const x=300;const angle=290;
+       let array=[];
+    for (let i = 1; i < 28; i++) 
     {
-      array1.push({ a: `output` + ("0000" + i).slice(-3) + ".png" });
+      array.push({ a: `output` + ("0000" + i).slice(-3) + ".png" ,x:(x-(10*(i))),degree:(angle-(10*i))});
     }
+    setArray1(array)
+    console.log("-------------change------------")
+
+    // for (let i = 1; i <30; i++) {
+    //   array1.push({ a: "output001" + ".png",x:(x-(10*(i))),degree:(angle-(10*i))});
+    // }
     console.log(props.file);
     if(props.file.length!=0){
-      setVideo(props.file[0].file)
+      setVideo2(props.file[0].file)
     }
   }, [props.file]);
 
@@ -45,29 +68,30 @@ const App = (props) =>
   {
     if (ffmpeg.isLoaded()) 
     {
-      setReady(true);
+      setReady2(true);
       return;
     }
     await ffmpeg.load();
-    setReady(true);
+    setReady2(true);
   };
 
   const framesfetched = async () => 
   {
-    setGif(false);
       array2.push("done");
+     console.log(array2)
+     console.log(array1)
       if (array2.length == array1.length) 
       {
           await ffmpeg.run(
-            "-i", "coutput%3d.png",
+            "-i", "coutput%03d.png",
             "-frames:v","30",
             "finalgif.gif"
           );
         
-        const data = ffmpeg.FS("readFile",`finalgif.gif`);
+        const data = await ffmpeg.FS("readFile",`finalgif.gif`);
         const url = URL.createObjectURL(new Blob([data.buffer],{ type: "image/gif" }));
         console.log(url);
-        setGif(url);
+        setGif2(url);
       }
   };
 
@@ -78,8 +102,8 @@ const App = (props) =>
     // await ffmpeg.run('-i',"test.mp4",'-ss',"2.0",'-f',"gif","output.gif")
     //await ffmpeg.run('-i', "test.mp4", '-vn', '-acodec', 'copy','-f','mp3' ,'output.mp3')
     //await ffmpeg.run('-i', "test.png",'-f',"gif",'output.gif')
-    setConvert(false);
-    setGif(false);
+    setConvert2(false);
+    setGif2(false);
     await ffmpeg.run
     (
       "-i","test.mp4",
@@ -87,7 +111,7 @@ const App = (props) =>
       "-crf","0",
       "output%03d.png"
     ); //output001.png
-    setConvert(true);
+    setConvert2(true);
   };
 
 
@@ -97,21 +121,15 @@ const App = (props) =>
     // await ffmpeg.run('-i',"test.mp4",'-ss',"2.0",'-f',"gif","output.gif")
     //await ffmpeg.run('-i', "test.mp4", '-vn', '-acodec', 'copy','-f','mp3' ,'output.mp3')
     //await ffmpeg.run('-i', "test.png",'-f',"gif",'output.gif')
-    setConvert(false);
-    setGif(false);
-    // await ffmpeg.run(
-    //   "-i","test.mp4",
-    //   "-vf","scale=iw/2:ih/2",
-    //   "-crf","0",
-    //   "output%03d.png"
-    // );
-     //output001.png
-    setConvert(true);
+    setConvert2(false);
+    setGif2(false);
+    setConvert2(true);
   };
 
 
   return (
     <>
+    {}
       {ready ? (
         <div>
           {/* {video && (
@@ -145,6 +163,7 @@ const App = (props) =>
                 ffmpeg={ffmpeg}
                 complete={framesfetched}
                 type={props.type}
+                xaxis={data.x} index={index} angle={data.degree}
               />
             );
           })}

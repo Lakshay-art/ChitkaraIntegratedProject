@@ -5,13 +5,49 @@ import { server } from "../config";
 import { fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
 
+
+export const useEffectOnce = ( effect )=> {
+
+  const destroyFunc = React.useRef();
+  const effectCalled = React.useRef(false);
+  const renderAfterCalled = React.useRef(false);
+  const [val, setVal] = React.useState(0);
+
+  if (effectCalled.current) {
+      renderAfterCalled.current = true;
+  }
+
+  React.useEffect( ()=> {
+
+      // only execute the effect first time around
+      if (!effectCalled.current) { 
+        destroyFunc.current = effect();
+        effectCalled.current = true;
+      }
+
+      // this forces one render after the effect is run
+      setVal(val => val + 1);
+
+      return ()=> {
+        // if the comp didn't render since the useEffect was called,
+        // we know it's the dummy React cycle
+        if (!renderAfterCalled.current) { return; }
+        if (destroyFunc.current) { destroyFunc.current(); }
+      };
+  }, []);
+};
+
+
+
 const App = (props) => {
   const [gif, setGif] = React.useState(false);
+  // const [called, setCalled] = React.useState(false);
   console.log(props.ffmpeg);
   var reader = new FileReader();
   var base64data;
 
-  const sendToCloudinaryVideotoGif = async () => {
+  const sendToCloudinaryVideotoGif = async (base64data) => {
+    //setCalled(true);
     await axios
       .post(`${server}/api/videotogif`, {
         link: base64data,
@@ -25,6 +61,7 @@ const App = (props) => {
         //   new Blob([data.buffer], { type: "image/png" })
         // );
         // setGif(url);
+
          props.complete();
         },
         (err) => {
@@ -33,10 +70,15 @@ const App = (props) => {
       );
   };
 
-  const sendToCloudinaryImagetoGif = async () => {
+  const sendToCloudinaryImagetoGif = async (base64data) => {
+    //setCalled(true);
+
     await axios
       .post(`${server}/api/imagetogif`, {
-        link: base64data,
+       link: base64data,
+       x:props.xaxis,
+        index:props.index,
+        angle:props.angle
       })
       .then(
         async(res) => {
@@ -54,13 +96,12 @@ const App = (props) => {
         }
       );
   };
-
-  React.useEffect(async () => {
+  useEffectOnce( ()=> {
     let read=props.name;
     if(props.type=="imagetogif")
-    read="test"
+    read="test.png"
     const data = props.ffmpeg.FS("readFile", read);
-
+  
     //convert to base64
     reader.readAsDataURL(new Blob([data.buffer]));
     reader.onloadend = function () {
@@ -79,7 +120,15 @@ const App = (props) => {
       new Blob([data.buffer], { type: "image/jpg" })
     );
     setGif(url);
-  }, []);
+    
+    
+    return () => console.log('my effect is destroying');
+});
+
+
+
+  
+
   return (
     <>
       {console.log(props.name)}

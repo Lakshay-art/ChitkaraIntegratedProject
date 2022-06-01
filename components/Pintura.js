@@ -21,13 +21,16 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview,Fi
 
 function App(props) {
   const [files, setFiles] = useState([]);
+  const setFiles2 = React.useCallback((state) => {
+    setFiles(state);
+  }, [files]);
   return (<>
     <div className={styles.filepond}>
       <FilePond
         files={files}
         allowReorder={true}
         allowMultiple={true}
-        onupdatefiles={setFiles}
+        onupdatefiles={setFiles2}
         labelIdle={`Drag & Drop your ${props.type=="videotogif"? "Video/Gif ":"Image "} or <span class="filepond--label-action">Browse</span>`}
         imagePreviewHeight="200"
         allowVideoPreview="true"   // default true
