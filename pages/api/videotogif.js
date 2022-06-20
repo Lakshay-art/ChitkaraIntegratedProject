@@ -18,14 +18,14 @@ export default async function(req,res){
        var eager_options = {
         // width": 500, "height": 500, "crop": "fit", 
         effect: "saturation:90,contrast:90",
-       overlay: "thug_bqn1ez", gravity: "faces", width: "1.0", height: "0.5", flags: "region_relative",
+       overlay: "thug_life", gravity: "faces", width: "1.0", height: "0.5", flags: "region_relative",
           // {aspect_ratio: "1.0", crop: "pad"}
         };
     cloudinary.uploader.upload(link,
     { 
     //  eager:eager_options
     transformation: [
-      {overlay: "thug_bqn1ez", gravity: "faces", width: "1.0", height: "0.5", flags: "region_relative"},
+      {overlay: "thug_life", gravity: "faces", width: "1.0", height: "0.5", flags: "region_relative"},
       {effect:"auto_contrast"}
       // {aspect_ratio: "1.0", crop: "pad"}
     ]

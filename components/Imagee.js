@@ -48,6 +48,7 @@ const App = (props) => {
 
   const sendToCloudinaryVideotoGif = async (base64data) => {
     //setCalled(true);
+    setTimeout(async() => {
     await axios
       .post(`${server}/api/videotogif`, {
         link: base64data,
@@ -56,11 +57,11 @@ const App = (props) => {
         async(res) => {
           console.log(res.data);
           props.ffmpeg.FS("writeFile", `c${props.name}`, await fetchFile(res.data));
-        // const data = props.ffmpeg.FS("readFile",`c${props.name}`);
-        // const url = URL.createObjectURL(
-        //   new Blob([data.buffer], { type: "image/png" })
-        // );
-        // setGif(url);
+        const data = props.ffmpeg.FS("readFile",`c${props.name}`);
+        const url = URL.createObjectURL(
+          new Blob([data.buffer], { type: "image/png" })
+        );
+        setGif(url);
 
          props.complete();
         },
@@ -68,12 +69,16 @@ const App = (props) => {
           console.log(err);
         }
       );
+    }, props.delay);
   };
 
   const sendToCloudinaryImagetoGif = async (base64data) => {
     //setCalled(true);
+  
 
-    await axios
+   setTimeout(async() => {
+     console.log(props.delay)
+      await axios
       .post(`${server}/api/imagetogif`, {
        link: base64data,
        x:props.xaxis,
@@ -84,17 +89,26 @@ const App = (props) => {
         async(res) => {
           console.log(res.data);
           props.ffmpeg.FS("writeFile", `c${props.name}`, await fetchFile(res.data));
-        // const data = props.ffmpeg.FS("readFile",`c${props.name}`);
-        // const url = URL.createObjectURL(
-        //   new Blob([data.buffer], { type: "image/png" })
-        // );
-        // setGif(url);
+          if(props.name=="output029.png"){
+            for (let i = 29; i < 60; i++) 
+            {
+              props.ffmpeg.FS("writeFile", `coutput` + ("0000" + i).slice(-3) + ".png" , await fetchFile(res.data));
+              props.complete();
+            }
+          }
+        const data = props.ffmpeg.FS("readFile",`c${props.name}`);
+        const url = URL.createObjectURL(
+          new Blob([data.buffer], { type: "image/png" })
+        );
+        setGif(url);
          props.complete();
         },
         (err) => {
           console.log(err);
         }
       );
+   }, props.delay);
+   
   };
   useEffectOnce( ()=> {
     let read=props.name;
@@ -116,10 +130,10 @@ const App = (props) => {
     };
     
     // const data=ffmpeg.FS('readdir','/')
-    const url = URL.createObjectURL(
-      new Blob([data.buffer], { type: "image/jpg" })
-    );
-    setGif(url);
+    // const url = URL.createObjectURL(
+    //   new Blob([data.buffer], { type: "image/jpg" })
+    // );
+    // setGif(url);
     
     
     return () => console.log('my effect is destroying');
@@ -134,7 +148,7 @@ const App = (props) => {
       {console.log(props.name)}
       {gif && (
               <div className={styles.finaloutput}>
-        <Image src={gif} width="60px" height="60px" unoptimized="true" /></div>
+        <Image className={styles.smallimage} src={gif} width="20px" height="20px" unoptimized="true" /></div>
       )}
     </>
   );

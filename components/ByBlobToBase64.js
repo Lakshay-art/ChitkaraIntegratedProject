@@ -47,19 +47,16 @@ const App = (props) =>
     load(); 
        const x=300;const angle=290;
        let array=[];
-    for (let i = 1; i < 28; i++) 
+    for (let i = 1; i < 30; i++) 
     {
-      array.push({ a: `output` + ("0000" + i).slice(-3) + ".png" ,x:(x-(10*(i))),degree:(angle-(10*i))});
+      array.push({ a: `output` + ("0000" + i).slice(-3) + ".png" ,x:(x-(10*(i))),degree:(angle-(10*i)),delay:i*2000});
     }
     setArray1(array)
     console.log("-------------change------------")
-
-    // for (let i = 1; i <30; i++) {
-    //   array1.push({ a: "output001" + ".png",x:(x-(10*(i))),degree:(angle-(10*i))});
-    // }
     console.log(props.file);
     if(props.file.length!=0){
       setVideo2(props.file[0].file)
+      array2=[]
     }
   }, [props.file]);
 
@@ -74,17 +71,33 @@ const App = (props) =>
     await ffmpeg.load();
     setReady2(true);
   };
+//  const compressMov=async()=>{
+//   ffmpeg.FS("writeFile", "a.mov", await fetchFile(video));
 
+//   await ffmpeg.run(
+//     "-i", "a.mov",
+//      "-map","0",
+//      "-c:v","qtrle",
+//     "-c:a","copy",
+//     "-crf","20",
+//     "finalmov.mov"
+//   );
+//  // ffmpeg -i "Video Intro.avi" -map 0 -c:v png -c:a copy "Compressed.avi
+//   const data = await ffmpeg.FS("readFile",`finalmov.mov`);
+//   const url = URL.createObjectURL(new Blob([data.buffer],{ type: "video/mp4" }));
+//   console.log(url);
+//   setGif2(url);
+//  }
   const framesfetched = async () => 
   {
       array2.push("done");
      console.log(array2)
      console.log(array1)
-      if (array2.length == array1.length) 
+      if ((props.type=="imagetogif" && array2.length == 2*array1.length-10) || (props.type=="videotogif" && array2.length == array1.length)) 
       {
           await ffmpeg.run(
             "-i", "coutput%03d.png",
-            "-frames:v","30",
+            "-frames:v","60",
             "finalgif.gif"
           );
         
@@ -129,28 +142,11 @@ const App = (props) =>
 
   return (
     <>
-    {}
-      {ready ? (
-        <div>
-          {/* {video && (
-            <video
-              controls
-              width="auto"
-              src={URL.createObjectURL(video)}
-            >
-              </video>
-           
-          )}   {console.log(video)} */}
-          {/* <input className={styles.input}
-            type="file" 
-            onChange={(e) => setVideo(e.target.files?.item(0))}
-          /> */}
-        </div>
-      ) : (
-        <></>
-      )}
+  
+     
       {props.type=="videotogif" && <button onClick={videoToGif}>Make this Gif/Video Awesome</button>}
       {props.type=="imagetogif" && <button onClick={ImageToGif}>Gif it!!</button>}
+       {/* <button onClick={compressMov}>mov!</button> */}
       <div className={styles.flex}>
         {/* {convert && <Imagee key={1} name={"output001.png"} ffmpeg={ffmpeg} complete={framesfetched}/>} */}
         {convert &&
@@ -164,6 +160,7 @@ const App = (props) =>
                 complete={framesfetched}
                 type={props.type}
                 xaxis={data.x} index={index} angle={data.degree}
+                delay={data.delay}
               />
             );
           })}
@@ -178,7 +175,7 @@ const App = (props) =>
 
       {gif && (
         <div className={styles.finaloutput}>
-        <Image src={gif} width="auto" height="auto" unoptimized="true"  /></div>
+        <Image className={styles.finalgif} layout="fill" src={gif} unoptimized="true"  /></div>
       )}
     </>
   );

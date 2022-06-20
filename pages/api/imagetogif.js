@@ -14,18 +14,20 @@ export default async function(req,res){
       var eager_options = {
       // width": 500, "height": 500, "crop": "fit", "effect": "saturation:-70"
 
-      tags: "basic_sample", public_id: "image",  overlay: "thug_bqn1ez", gravity: "faces", width: "1.0", height: "0.5", flags: "region_relative",x:`${xaxis}`,y:"-10",angle:`${angle}`
+       overlay: "thug_life", gravity: "faces", width: "1.0", height: "0.5", flags: ["region_relative","no_overflow"],x:`${xaxis}`,y:"0",angle:`${angle}`
         // {aspect_ratio: "1.0", crop: "pad"}
       };
   try{
       const link=req.body.link;
       if(!link) return;
     cloudinary.uploader.upload(link,
-    { 
-    eager:eager_options
-    },
+     
+      {  public_id: "image",width:"300",crop:"fit", eager: eager_options }
+    ,
     function (err, image) {
-      if (err) { console.log(err); }
+      if (err) { 
+        return res.status(500).send(err);
+        }
       console.log("* " + image.url);
       console.log(index+" "+image.eager[0].url);
       return res.status(200).send(image.eager[0].url);

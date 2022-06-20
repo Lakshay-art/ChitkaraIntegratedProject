@@ -37,8 +37,8 @@ function App(props) {
         allowAudioPreview="true"
         imageCropAspectRatio='1:1'
         acceptedFileTypes={props.type=="videotogif"?"video/*":"image/*"}
-        // imageResizeTargetWidth='200'
-        // imageResizeTargetHeight='200'
+        imageResizeTargetWidth='500'
+        imageResizeTargetHeight='500'
          // stylePanelLayout='integrated circle'
        //  styleLoadIndicatorPosition='top'
         // styleButtonRemoveItemPosition='center bottom'
