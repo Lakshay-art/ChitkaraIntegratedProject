@@ -120,7 +120,7 @@ const App = (props) =>
     await ffmpeg.run
     (
       "-i","test.mp4",
-      "-vf","scale=iw/1.5:ih/1.5",
+      "-vf","scale=300:-1",
       "-crf","0",
       "output%03d.png"
     ); //output001.png
@@ -130,10 +130,17 @@ const App = (props) =>
 
   const ImageToGif = async () => 
   {
-    ffmpeg.FS("writeFile", "test.png", await fetchFile(video));
+    ffmpeg.FS("writeFile", "input.png", await fetchFile(video));
     // await ffmpeg.run('-i',"test.mp4",'-ss',"2.0",'-f',"gif","output.gif")
     //await ffmpeg.run('-i', "test.mp4", '-vn', '-acodec', 'copy','-f','mp3' ,'output.mp3')
     //await ffmpeg.run('-i', "test.png",'-f',"gif",'output.gif')
+    await ffmpeg.run
+    (
+      "-i","input.png",
+      "-vf","scale=500:-1",
+      "-crf","20",
+      "test.png"
+    ); //output001.png
     setConvert2(false);
     setGif2(false);
     setConvert2(true);
