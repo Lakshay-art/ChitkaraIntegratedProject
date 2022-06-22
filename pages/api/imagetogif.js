@@ -20,7 +20,7 @@ export default async function(req,res){
   try{
       const link=req.body.link;
       if(!link) return;
-    cloudinary.uploader.upload(link,{timeout:120000},
+    cloudinary.uploader.upload(link,
      
       {  public_id: "image",width:"300",crop:"fit", eager: eager_options }
     ,
