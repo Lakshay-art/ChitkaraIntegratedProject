@@ -1,15 +1,44 @@
-#h{
-  background-color: rgb(0, 0, 0);
- 
-  
+.mainheader{
+  background-color:#292c2f;
+  box-shadow:0 1px 1px #ccc;
+  padding: 20px 40px;
+height: 50px;
+  width: 103%;
+  color: #ffffff;
+  box-sizing: border-box;
+  margin:-8px;
 }
-.title a,
+.mainheader h1{
+  display: inline;
+  float: left;
+  font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+  line-height: 30px;
+  margin: 0;
+}
+.mainheader h1 span{
+  color:red;
+}
+.nav{
+  float:right;
+display:flex;
+gap:3rem;
+margin-right: 20px;
+}
+.a{
+  text-decoration:none;
+  color:white;
+  opacity: 0.8;
+  }
+  .a:hover{
+    opacity: 1;
+  }
+/* .title a,
 .title span {
   color: #0070f3;
   text-decoration: none;
-}
+} */
 
-.title a:hover,
+/* .title a:hover,
 .title a:focus,
 .title a:active {
   text-decoration: underline;
@@ -30,4 +59,5 @@
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
-}
+} */
+
