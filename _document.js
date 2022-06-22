@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Banner from './components/Banner'
 
 class MyDocument extends Document {
   render() {
@@ -9,7 +10,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript>
-          
           </NextScript>
         </body>
       </Html>
@@ -18,3 +18,4 @@ class MyDocument extends Document {
 }
 
 export default MyDocument
+
