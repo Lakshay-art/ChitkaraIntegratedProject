@@ -16,7 +16,6 @@ export const useEffectOnce = (effect) => {
   }
 
   React.useEffect(() => {
-    console.log("first");
     // only execute the effect first time around
     if (!effectCalled.current) {
       destroyFunc.current = effect();
@@ -44,55 +43,61 @@ const App = (props) => {
   // const [called, setCalled] = React.useState(false);
   console.log(props.ffmpeg);
 
-  var base64data;
+  // var base64data;
+  // const getLastFrame=()=>{
+  //   // var reader = new FileReader();
+  //   return props.ffmpeg.FS("readFile",`coutput029.png`)
+  // }
 
-  const saveFrameToFFmpeg = async (public_id, name, frame, delay) => {
-    //setCalled(true);
-    setTimeout(async () => {
-      console.log(delay);
-      await axios
-        .post(`${server}/api/videotogif`, {
-          link: `http://res.cloudinary.com/lakshaythegupta/pg_${frame}/${public_id}.png`,
-        })
-        .then(
-          async (res) => {
-            console.log(res.data);
-            props.ffmpeg.FS("writeFile", `c${name}`, await fetchFile(res.data));
-            // const data = props.ffmpeg.FS("readFile",`c${name}`);
-            // const url = URL.createObjectURL(
-            //   new Blob([data.buffer], { type: "image/png" })
-            // );
-            // setGif(url);
+  const saveFrameToFFmpeg = async (public_id, name, x, angle, delay) => {
+    props.ffmpeg.FS(
+      "writeFile",
+      `c${name}`,
+      await fetchFile(
+        `http://res.cloudinary.com/lakshaythegupta/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_thug_life,w_1.0,x_${x},y_0/${public_id}.png`
+      )
+    );
 
-            props.complete();
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-    }, delay);
-    // props.ffmpeg.FS("writeFile", `c${name}`, await fetchFile(`http://res.cloudinary.com/lakshaythegupta/pg_${frame}/${public_id}.png`));//frame code left
-    // props.complete();
+    props.complete();
   };
 
   useEffectOnce(() => {
-    console.log("first");
+    const x = 600;
+    const angle = 290;
+
     for (let i = 1; i < 30; i++) {
-      saveFrameToFFmpeg(
-        props.public_id,
-        `output` + ("0000" + i).slice(-3) + ".png",
-        i * 5,
-        i * 1000
-      );
+      //console.log(i)
+      setTimeout(async () => {
+        console.log(i * 2000);
+        saveFrameToFFmpeg(
+          props.public_id,
+          `output` + ("0000" + i).slice(-3) + ".png",
+          x - 20 * i,
+          angle - 10 * i,
+          i * 2000
+        );
+      }, i * 2000);
     }
-    // setArray(array)
+
+    for (let i = 30; i < 60; i++) {
+      setTimeout(async () => {
+        console.log(i * 2000);
+        saveFrameToFFmpeg(
+          props.public_id,
+          `output` + ("0000" + i).slice(-3) + ".png",
+          0,
+          0,
+          i * 2000
+        );
+      }, i * 2000);
+    }
 
     return () => console.log("my effect is destroying");
   });
 
   return (
     <>
-      {console.log(props.name)}
+      {/* {console.log(props.name)} */}
       {gif && (
         <div className={styles.finaloutput}>
           <Image

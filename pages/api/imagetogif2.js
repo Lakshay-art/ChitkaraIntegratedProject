@@ -18,13 +18,13 @@ export default async function handler(req,res){
       if(!link) return;
     cloudinary.uploader.upload(link,
      
-      {}
+      {width:"600"}
     ,
     function (err, image) {
       if (err) { 
         return res.status(500).send(err);
         }
-      console.log("* " + image.url);
+      console.log("* " + image);
     //   console.log(image.eager[0].url);
       return res.status(200).send(image.public_id);
     }); 
