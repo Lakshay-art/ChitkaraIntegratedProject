@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 import axios from "axios";
 import { server } from "../config";
-import { BtnText, ButtonGiff } from "./Banner/Banner.styles";
+import { BtnText, ButtonGiff, Container, FlexBox } from "./Banner/Banner.styles";
 
 const ffmpeg = createFFmpeg(
   {
@@ -121,7 +121,8 @@ const App = (props) => {
 
   return (
     <>
-      { }
+
+
       {ready ? (
         <div>
           {/* {video && (
@@ -172,6 +173,7 @@ const App = (props) => {
         <div className={styles.finaloutput}>
           <Image src={gif} width="auto" height="auto" unoptimized="true" /></div>
       )}
+
     </>
   );
 };

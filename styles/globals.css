@@ -2,13 +2,13 @@
 html,
 body {
   /* margin: -10px; */
-  margin:-8px !important;
-  width: 120% !important;
-  background-color: whitesmoke;
+  /* margin:-8px !important; */
+  width: 100% !important;
+  background-color: rgba(8, 232, 244, 0.373) !important;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     /* background:linear-gradient(45deg, #33ccff 0%, #ff99cc 100%); */
-    
+    overflow: hidden;
     /* color: rgba(245, 245, 245, 0.945); */
     
 }

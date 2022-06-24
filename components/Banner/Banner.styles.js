@@ -70,3 +70,95 @@ background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 
   }
 
 `
+
+export const Wrap = styled.div`
+height:600px;
+width:100%;
+margin:0;
+background:red;
+`
+export const TextAnimation = styled.div`
+display:inline-block;
+width:100%;
+height:40px;
+overflow:hidden;
+
+div &{
+//  font-size:0px;
+// margin-left:-20px;
+// position:absolute;
+//   font-weight:300;  
+color:red; 
+
+}
+ & div:nth-child(1) {
+  animation-delay:5s;
+  animation: roll 5s infinite;
+
+ }
+ & div:nth-child(2){
+  animation-delay:4s;
+  animation: roll2 5s infinite ;
+ color:blue;
+}
+@keyframes roll{
+0%{
+  transform: translateY(50%);
+}
+100%{
+  transform: translateY(-350%);
+}
+}
+@keyframes roll2{
+  0%{
+    transform: translateY(190%);
+  }
+  50%
+  {
+    transform:translateY(-40%);
+  }
+  75%{
+    transform:translateY(-180%);
+  }
+  100%{
+    transform: translateY(-350%);
+  }}
+
+ }
+ `
+export const Container = styled.div`
+max-height:400px;
+width:250px;
+margin-right:100px;
+border-radius:20px;
+overflow:scroll;
+`
+export const WrapBox = styled.div`
+display:flex;
+margin-top:20px;
+flex-direction:row;
+flex-wrap:wrap;
+justify-content:center;
+`
+export const ImageWrap = styled.div`
+display:flex;
+cursor:pointer;
+border:1px solid white;
+justify-content:center;
+flex-direction:column;
+margin:10px;
+background: linear-gradient(90deg, rgba(48,182,196,1) 24%, rgba(12,114,198,1) 78%);
+
+background:richblack;
+border: 3px solid #1fe8b6;;
+`
+export const Filters = styled.div`
+
+`
+export const FilterText = styled.div`
+font-family: 'Poppins', sans-serif;
+color:yellow;
+font-size:20px;
+font-weight:500px;
+ margin:0 auto;
+`
