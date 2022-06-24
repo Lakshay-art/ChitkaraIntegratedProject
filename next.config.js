@@ -1,7 +1,4 @@
 module.exports = {
-  api: {
-    responseLimit: '8mb',
-  },
   images: {
     domains: ["", "localhost", "cdn.pixabay.com", "media.istockphoto.com", "res.cloudinary.com"],
   },

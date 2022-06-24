@@ -1,6 +1,7 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
-import Imagee from "./Imagee";
+import Imagee from "../BackUps/Imagee";
+import Videoo from '../components/Videoo'
 import Image from "next/image";
 import React from "react";
 import axios from "axios";
@@ -21,7 +22,7 @@ const App = (props) =>
   const [array1, setArray1] = React.useState([]);
   // const [array2, setArray2] = React.useState([]);
   const [video, setVideo] = React.useState(false);
-  const [convert, setConvert] = React.useState(false);
+  const [convert, setConvert] = React.useState();
   const [gif, setGif] = React.useState(false);
   
   const setReady2 = React.useCallback((state) => {
@@ -93,7 +94,7 @@ const App = (props) =>
       array2.push("done");
      console.log(array2)
      console.log(array1)
-      if ((props.type=="imagetogif" && array2.length == 2*array1.length-10) || (props.type=="videotogif" && array2.length == array1.length)) 
+      if ((props.type=="imagetogif" && array2.length == 2*array1.length-10) || (props.type=="videotogif" && array2.length == 29)) 
       {
           await ffmpeg.run(
             "-i", "coutput%03d.png",
@@ -108,42 +109,78 @@ const App = (props) =>
       }
   };
 
-
+ 
   const videoToGif = async () => 
-  {
+  { var reader = new FileReader();
+    let base64data;
     ffmpeg.FS("writeFile", "test.mp4", await fetchFile(video));
-    // await ffmpeg.run('-i',"test.mp4",'-ss',"2.0",'-f',"gif","output.gif")
-    //await ffmpeg.run('-i', "test.mp4", '-vn', '-acodec', 'copy','-f','mp3' ,'output.mp3')
-    //await ffmpeg.run('-i', "test.png",'-f',"gif",'output.gif')
-    setConvert2(false);
+    await ffmpeg.run('-i',"test.mp4","-t","3",'-f',"gif","output.gif")
+    // reader.readAsDataURL(video);
+    const data = ffmpeg.FS("readFile", "output.gif");
+     reader.readAsDataURL(new Blob([data.buffer]));
+     reader.onloadend = function() {
+      base64data = reader.result;
+      console.log(reader);
+       axios
+    .post(`${server}/api/imagetogif2`, {
+     link: base64data,
+    }).then((res) => {
+     setConvert2(res.data);
+  //      <Videoo
+  //   ffmpeg={ffmpeg}
+  //   complete={framesfetched}
+  //   public_id={res.data}
+  // />
+
+    // setConvert2(false);
     setGif2(false);
-    await ffmpeg.run
-    (
-      "-i","test.mp4",
-      "-vf","scale=300:-1",
-      "-crf","0",
-      "output%03d.png"
-    ); //output001.png
-    setConvert2(true);
+    // setConvert2(true);
+      })
+
+    }
+    
   };
 
 
+  // const ImageToGif = async () => 
+  // {
+  //   ffmpeg.FS("writeFile", "input.png", await fetchFile(video));
+  //   // await ffmpeg.run('-i',"test.mp4",'-ss',"2.0",'-f',"gif","output.gif")
+  //   //await ffmpeg.run('-i', "test.mp4", '-vn', '-acodec', 'copy','-f','mp3' ,'output.mp3')
+  //   //await ffmpeg.run('-i', "test.png",'-f',"gif",'output.gif')
+  //   await ffmpeg.run
+  //   (
+  //     "-i","input.png",
+  //     "-vf","scale=1000:-1",
+  //     // "-crf","20",
+  //     "test.png"
+  //   ); //output001.png
+  //   setConvert2(false);
+  //   setGif2(false);
+  //   setConvert2(true);
+  // };
+ 
   const ImageToGif = async () => 
-  {
-    ffmpeg.FS("writeFile", "input.png", await fetchFile(video));
-    // await ffmpeg.run('-i',"test.mp4",'-ss',"2.0",'-f',"gif","output.gif")
-    //await ffmpeg.run('-i', "test.mp4", '-vn', '-acodec', 'copy','-f','mp3' ,'output.mp3')
-    //await ffmpeg.run('-i', "test.png",'-f',"gif",'output.gif')
-    await ffmpeg.run
-    (
-      "-i","input.png",
-      "-vf","scale=500:-1",
-      // "-crf","20",
-      "test.png"
-    ); //output001.png
-    setConvert2(false);
+  { let base64data;
+     var reader = new FileReader();
+
+    reader.readAsDataURL(video);
+    // await reader.readAsDataURL(new Blob([video.buffer]));
+     reader.onloadend = function () {
+      base64data = reader.result;
+      console.log(reader);
+       axios
+    .post(`${server}/api/imagetogif2`, {
+     link: base64data,
+    })
+    .then(
+      async(res) => {
+    setConvert2(res.data);
     setGif2(false);
-    setConvert2(true);
+    //setConvert2(true);
+      })}
+    
+
   };
 
 
@@ -156,11 +193,18 @@ const App = (props) =>
        {/* <button onClick={compressMov}>mov!</button> */}
       <div className={styles.flex}>
         {/* {convert && <Imagee key={1} name={"output001.png"} ffmpeg={ffmpeg} complete={framesfetched}/>} */}
-        {convert &&
+        {/* {convert &&
           array1.map((data, index) => {
             console.log(data);
             return (
-              <Imagee
+            
+            );
+          })} */}
+          {/* {convert &&
+          array1.map((data, index) => {
+            console.log(data);
+            return (
+              <Videoo
                 key={index}
                 name={data.a}
                 ffmpeg={ffmpeg}
@@ -170,8 +214,20 @@ const App = (props) =>
                 delay={data.delay}
               />
             );
-          })}
-      </div>
+          })} */}
+          {convert &&      
+            //  <Videoo
+            //   ffmpeg={ffmpeg}
+            //   complete={framesfetched}
+            //   public_id={convert}
+            // />}
+            //     </div>
+            <Imagee
+            ffmpeg={ffmpeg}
+            complete={framesfetched}
+            public_id={convert}
+          />}
+              </div>
 
       {/* //audio
                 <audio controls>
