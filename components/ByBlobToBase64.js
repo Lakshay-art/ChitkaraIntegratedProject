@@ -260,7 +260,8 @@ const App = (props) => {
         <div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
-            layout="fill"
+            height="100%"
+            width="100%"
             src={gif}
             unoptimized="true"
           />

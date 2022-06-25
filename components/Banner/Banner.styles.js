@@ -128,42 +128,37 @@ div &{
  }
  `
 export const Container = styled.div`
-max-height:400px;
 
-margin-right:100px;
-border-radius:20px;
-overflow:scroll;
 `
 export const WrapBox = styled.div`
 display:flex;
 margin-top:20px;
-flex-direction:row;
+flex-direction:column;
 flex-wrap:wrap;
 justify-content:center;
 `
 export const ImageWrap = styled.div`
-
 cursor:pointer;
 display:flex;
 flex-wrap:wrap;
 border:1px solid white;
 justify-content:center;
-// height: 90px;
-    width: 92px;
-
+min-width: 86px;
 flex-direction:column;
-margin:10px;
+margin:5px;
 border: 3px solid #1fe8b6;;
 `
 export const Filters = styled.div`
-
+display:flex;
+flex-direction:row;
+width:410px;
+overflow:scroll;
 `
 export const FilterText = styled.div`
 margin :0 auto;
 font-size: 14px;
 font-family: Arial, Helvetica, sans-serif;
-background: linear-gradient(to right, #f32170,
-        #ff6b08, #cf23cf, #eedd44);
+background: linear-gradient(to right, #f32170,#ff6b08, #cf23cf, #eedd44);
 -webkit-text-fill-color: transparent;
 -webkit-background-clip: text;
 `
