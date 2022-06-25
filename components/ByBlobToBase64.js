@@ -132,29 +132,17 @@ const App = (props) => {
   const videoToGif = async () => {
     var reader = new FileReader();
     let base64data;
-    ffmpeg.FS("writeFile", "test.mp4", await fetchFile(video));
-    await ffmpeg.run("-i", "test.mp4", "-t", "3", "-f", "gif", "output.gif");
-    // reader.readAsDataURL(video);
-    const data = ffmpeg.FS("readFile", "output.gif");
-    reader.readAsDataURL(new Blob([data.buffer]));
-    reader.onloadend = function () {
+    reader.readAsDataURL(new Blob([video], { type: "image/gif" }));
+    reader.onloadend = function async() {
       base64data = reader.result;
       console.log(reader);
       axios
-        .post(`${server}/api/imagetogif2`, {
+        .post(`${server}/api/getGifFromVideo`, {
           link: base64data,
         })
         .then((res) => {
           setConvertvid(res.data);
-          //      <Videoo
-          //   ffmpeg={ffmpeg}
-          //   complete={framesfetched}
-          //   public_id={res.data}
-          // />
-
-          // setConvert2(false);
           setGif2(false);
-          // setConvert2(true);
         });
     };
   };
@@ -187,7 +175,7 @@ const App = (props) => {
       base64data = reader.result;
       console.log(reader);
       axios
-        .post(`${server}/api/imagetogif2`, {
+        .post(`${server}/api/uploadImage`, {
           link: base64data,
         })
         .then(async (res) => {
@@ -232,11 +220,7 @@ const App = (props) => {
             );
           })} */}
         {convertimg && (
-          <Imagee
-            ffmpeg={ffmpeg}
-            complete={framesfetched}
-            public_id={convertimg}
-          />
+          <Imagee ffmpeg={ffmpeg} complete={framesfetched} image={convertimg} />
         )}
         {convertvid && (
           <Videoo

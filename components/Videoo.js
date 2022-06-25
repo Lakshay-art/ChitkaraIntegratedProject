@@ -51,8 +51,8 @@ const App = (props) => {
     setTimeout(async () => {
       console.log(delay);
       await axios
-        .post(`${server}/api/videotogif`, {
-          link: `http://res.cloudinary.com/tarun12/pg_${frame}/${public_id}.png`,
+        .post(`${server}/api/getVideoFrames`, {
+          link: `http://res.cloudinary.com/${process.env.CLOUD_NAME}/pg_${frame}/${public_id}.png`,
         })
         .then(
           async (res) => {
@@ -81,7 +81,7 @@ const App = (props) => {
       saveFrameToFFmpeg(
         props.public_id,
         `output` + ("0000" + i).slice(-3) + ".png",
-        i * 5,
+        i,
         i * 1000
       );
     }
