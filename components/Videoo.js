@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import axios from "axios";
-import { server } from "../config";
+import { cloud_name, server } from "../config";
 import { fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
 
@@ -52,7 +52,7 @@ const App = (props) => {
       console.log(delay);
       await axios
         .post(`${server}/api/getVideoFrames`, {
-          link: `http://res.cloudinary.com/${process.env.CLOUD_NAME}/pg_${frame}/${public_id}.png`,
+          link: `http://res.cloudinary.com/${cloud_name}/pg_${frame}/${public_id}.webp`,
         })
         .then(
           async (res) => {
@@ -80,7 +80,7 @@ const App = (props) => {
     for (let i = 1; i < 30; i++) {
       saveFrameToFFmpeg(
         props.public_id,
-        `output` + ("0000" + i).slice(-3) + ".png",
+        `output` + ("0000" + i).slice(-3) + ".webp",
         i,
         i * 1000
       );

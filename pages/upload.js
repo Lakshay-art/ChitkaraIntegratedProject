@@ -25,9 +25,7 @@ const App = () => {
       <Header />
       <Banner />
       <WrapBox>
-        <Container >
-          <Filter />
-        </Container>
+       
 
         <Layout>
 

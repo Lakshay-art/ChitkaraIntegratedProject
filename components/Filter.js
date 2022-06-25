@@ -1,43 +1,47 @@
 import Image from "next/image";
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Filters, FilterText, ImageWrap, Text } from "./Banner/Banner.styles";
-const data = [
-    {
-        Image: '/Assets/thug_life1.png',
-        desc: 'Face Edit '
-    },
-    {
-        Image: '/Assets/img-13.png',
-        desc: 'Just Gif It'
-    },
-    {
-        Image: '/Assets/img-12.png',
-        desc: 'Transformations'
-    },
-    {
-        Image: '/Assets/img-4.png',
-        desc: 'Crop It'
-    },
-    {
-        Image: '/Assets/img-9.png',
-        desc: 'Edit'
-    }
-]
+
+const Desc=["Thug Life","Happy Birthday","Squid Game1","Squid Game2","Squid Game3","Squid Game3","Squid Game3","Squid Game3","Squid Game3","Squid Game3"]
+
 const tap = () => {
     console.log(12);
 }
-const Filter = () => {
+const Filter = (props) => {
+    const [data,setData]=useState([
+    {
+        url: '/Assets/thug_life1.png',
+    },
+    {
+        url: '/Assets/img-13.png', 
+    },
+    {
+        url: '/Assets/img-12.png',
+    },
+    {
+        url: '/Assets/img-4.png',
+    },
+    {
+        url: '/Assets/img-9.png',
+    }
+]); 
+useEffect(() => {
+  setData(props.data)
+
+}, [props.data])
 
     return (
         <Filters>
             {
-                data.map((item, index) => {
+               data&& data.map((item, index) => {
                     return (
                         <ImageWrap onClick={() => {
                             tap()
                         }}   >
-                            <><Image src={item.Image} height="60px" width='60px' /><FilterText>
-                                {item.desc}
+                            <><Image src={item.url} height="60px" width='60px' /><FilterText>
+                                {Desc[index]}
                             </FilterText></>
                         </ImageWrap>
                     )
