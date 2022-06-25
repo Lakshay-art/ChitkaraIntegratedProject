@@ -42,7 +42,7 @@ export default async function handler(req, res) {
           overlay: "squidmask1",
           gravity: "face",
           width: "1.0",
-          height: "1",
+          height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
         { gravity: "face", height: 120, width: 120, crop: "thumb" },
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
           overlay: "squidmask2",
           gravity: "face",
           width: "1.0",
-          height: "0.5",
+          height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
         { gravity: "face", height: 120, width: 120, crop: "thumb" },
@@ -103,7 +103,7 @@ export default async function handler(req, res) {
     cloudinary.uploader.upload(
       link,
 
-      { width: "1200", eager: eager_options },
+      { width: "1200",format:"webp", eager: eager_options },
       function (err, image) {
         if (err) {
           return res.status(500).send(err);

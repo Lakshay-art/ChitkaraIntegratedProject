@@ -32,7 +32,7 @@ export default async function handler(req, res) {
             height: "0.5",
             flags: "region_relative",
           },
-          { effect: "auto_contrast" },
+          { effect: "auto_contrast", format:"webp" },
         ],
       },
       (err, image) => {
