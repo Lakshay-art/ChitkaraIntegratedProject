@@ -54,7 +54,7 @@ const App = (props) => {
       "writeFile",
       `c${name}`,
       await fetchFile(
-        `http://res.cloudinary.com/lakshaythegupta/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_thug_life,w_1.0,x_${x},y_0/${public_id}.png`
+        `http://res.cloudinary.com/${process.env.CLOUD_NAME}/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_thug_life,w_1.0,x_${x},y_0/${public_id}.png`
       )
     );
 
