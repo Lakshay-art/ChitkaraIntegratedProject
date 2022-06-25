@@ -29,11 +29,7 @@ const App = () => {
             <Button onClick={() => settype2("videotogif")} > Video to Gif</Button>
             <Button onClick={() => settype2("imagetogif")} > Image to Gif</Button>
           </Flex>
-          <Pintura type={type} />
-
-          <Filter />
-
-        </Layout>
+          <Pintura type={type} />  </Layout>
       </WrapBox>
       {/* <ByBase64/> */}
 
