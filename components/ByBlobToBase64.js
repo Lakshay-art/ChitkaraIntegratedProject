@@ -6,6 +6,7 @@ import Image from "next/image";
 import React from "react";
 import axios from "axios";
 import { server } from "../config";
+import { BtnText, ButtonGiff, Container, FlexBox } from "./Banner/Banner.styles";
 
 const ffmpeg = createFFmpeg({
   log: true,
@@ -263,6 +264,7 @@ const App = (props) => {
           />
         </div>
       )}
+
     </>
   );
 };

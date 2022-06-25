@@ -52,7 +52,7 @@ const App = (props) => {
       console.log(delay);
       await axios
         .post(`${server}/api/videotogif`, {
-          link: `http://res.cloudinary.com/lakshaythegupta/pg_${frame}/${public_id}.png`,
+          link: `http://res.cloudinary.com/tarun12/pg_${frame}/${public_id}.png`,
         })
         .then(
           async (res) => {
