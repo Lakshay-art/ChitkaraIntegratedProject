@@ -68,7 +68,6 @@ background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 
     opacity:1;
     box-shadow: 5px 5px 5px 3px rgba(0, 0, 255, .2);
   }
-
 `
 
 export const Wrap = styled.div`
@@ -81,14 +80,16 @@ export const TextAnimation = styled.div`
 display:inline-block;
 width:100%;
 height:40px;
+
 overflow:hidden;
 
 div &{
-//  font-size:0px;
+ font-size:18px;
+ font-family: monospace;
 // margin-left:-20px;
 // position:absolute;
 //   font-weight:300;  
-color:red; 
+
 
 }
  & div:nth-child(1) {
@@ -99,7 +100,7 @@ color:red;
  & div:nth-child(2){
   animation-delay:4s;
   animation: roll2 5s infinite ;
- color:blue;
+
 }
 @keyframes roll{
 0%{
@@ -128,7 +129,7 @@ color:red;
  `
 export const Container = styled.div`
 max-height:400px;
-width:250px;
+
 margin-right:100px;
 border-radius:20px;
 overflow:scroll;
@@ -141,24 +142,30 @@ flex-wrap:wrap;
 justify-content:center;
 `
 export const ImageWrap = styled.div`
-display:flex;
+
 cursor:pointer;
+display:flex;
+flex-wrap:wrap;
 border:1px solid white;
 justify-content:center;
+// height: 90px;
+    width: 92px;
+
 flex-direction:column;
 margin:10px;
-background: linear-gradient(90deg, rgba(48,182,196,1) 24%, rgba(12,114,198,1) 78%);
-
-background:richblack;
 border: 3px solid #1fe8b6;;
 `
 export const Filters = styled.div`
 
 `
 export const FilterText = styled.div`
-font-family: 'Poppins', sans-serif;
-color:yellow;
-font-size:20px;
-font-weight:500px;
- margin:0 auto;
+margin :0 auto;
+font-size: 14px;
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(to right, #f32170,
+        #ff6b08, #cf23cf, #eedd44);
+-webkit-text-fill-color: transparent;
+-webkit-background-clip: text;
 `
+export const Highlight = styled.span`
+color:red;`

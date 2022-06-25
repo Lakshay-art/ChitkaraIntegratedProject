@@ -17,7 +17,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import FilePondPluginMediaPreview from "filepond-plugin-media-preview";
 import 'filepond-plugin-media-preview/dist/filepond-plugin-media-preview.min.css';
 // Register the plugins
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview,FilePondPluginMediaPreview);
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginMediaPreview);
 
 function App(props) {
   const [files, setFiles] = useState([]);
@@ -31,22 +31,22 @@ function App(props) {
         allowReorder={true}
         allowMultiple={true}
         onupdatefiles={setFiles2}
-        labelIdle={`Drag & Drop your ${props.type=="videotogif"? "Video/Gif ":"Image "} or <span class="filepond--label-action">Browse</span>`}
+        labelIdle={`Drag & Drop your ${props.type == "videotogif" ? "Video/Gif " : "Image "} or <span class="filepond--label-action">Browse</span>`}
         imagePreviewHeight="200"
         allowVideoPreview="true"   // default true
         allowAudioPreview="true"
         imageCropAspectRatio='1:1'
-        acceptedFileTypes={props.type=="videotogif"?"video/*":"image/*"}
+        acceptedFileTypes={props.type == "videotogif" ? "video/*" : "image/*"}
         imageResizeTargetWidth='500'
         imageResizeTargetHeight='500'
-         // stylePanelLayout='integrated circle'
-       //  styleLoadIndicatorPosition='top'
-        // styleButtonRemoveItemPosition='center bottom'
+      // stylePanelLayout='integrated circle'
+      //  styleLoadIndicatorPosition='top'
+      // styleButtonRemoveItemPosition='center bottom'
       /> </div>
-          <ByBlobToBase64 type={props.type} file={files}/>
-          {console.log(files)}
-</>
-   
+    <ByBlobToBase64 type={props.type} file={files} />
+    {console.log(files)}
+  </>
+
   );
 }
 
