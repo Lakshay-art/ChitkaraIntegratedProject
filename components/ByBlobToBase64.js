@@ -8,6 +8,7 @@ import axios from "axios";
 import { server } from "../config";
 import { BtnText, ButtonGiff, Container, FlexBox } from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
+import Filter from "./Filter";
 
 const ffmpeg = createFFmpeg({
   log: true,
@@ -21,6 +22,24 @@ const App = (props) => {
   // const [array2, setArray2] = React.useState([]);
   const [video, setVideo] = React.useState(false);
   const [convertimg, setConvertimg] = React.useState();
+  const [convertImage2, setConvertimg2] = React.useState();
+  const [getThumbnails, setgetThumbnails] = React.useState([
+    {
+        url: '/Assets/thug_life1.png',
+    },
+    {
+        url: '/Assets/img-13.png', 
+    },
+    {
+        url: '/Assets/img-12.png',
+    },
+    {
+        url: '/Assets/img-4.png',
+    },
+    {
+        url: '/Assets/img-9.png',
+    }
+]);
   const [convertvid, setConvertvid] = React.useState();
   const [gif, setGif] = React.useState(false);
   const [active, setActive] = React.useState(true);
@@ -55,18 +74,18 @@ const App = (props) => {
     },
     [gif]
   );
-
   React.useEffect(async () => {
     //setConvert2(false);
     //setVideo2(false);
     //setGif2(false)
+
     load();
     const x = 300;
     const angle = 290;
     let array = [];
     for (let i = 1; i < 30; i++) {
       array.push({
-        a: `output` + ("0000" + i).slice(-3) + ".png",
+        a: `output` + ("0000" + i).slice(-3) + ".webp",
         x: x - 10 * i,
         degree: angle - 10 * i,
         delay: i * 2000,
@@ -77,6 +96,25 @@ const App = (props) => {
     console.log(props.file);
     if (props.file.length != 0) {
       setVideo2(props.file[0].file);
+      let base64data;
+    var reader = new FileReader();
+
+    reader.readAsDataURL(props.file[0].file);
+    // await reader.readAsDataURL(new Blob([video.buffer]));
+    reader.onloadend = function () {
+      base64data = reader.result;
+      console.log(reader);
+      axios
+        .post(`${server}/api/uploadImage`, {
+          link: base64data,
+        })
+        .then(async (res) => {
+          setgetThumbnails(res.data.eager)
+          setConvertimg2(res.data)
+          setGif2(false);
+          //setConvert2(true);
+        });
+    };
       array2 = [];
     }
   }, [props.file]);
@@ -116,7 +154,7 @@ const App = (props) => {
     ) {
       await ffmpeg.run(
         "-i",
-        "coutput%03d.png",
+        "coutput%03d.webp",
         "-frames:v",
         "60",
         "finalgif.gif"
@@ -134,29 +172,17 @@ const App = (props) => {
   const videoToGif = async () => {
     var reader = new FileReader();
     let base64data;
-    ffmpeg.FS("writeFile", "test.mp4", await fetchFile(video));
-    await ffmpeg.run("-i", "test.mp4", "-t", "3", "-f", "gif", "output.gif");
-    // reader.readAsDataURL(video);
-    const data = ffmpeg.FS("readFile", "output.gif");
-    reader.readAsDataURL(new Blob([data.buffer]));
-    reader.onloadend = function () {
+    reader.readAsDataURL(new Blob([video], { type: "image/gif" }));
+    reader.onloadend = function async() {
       base64data = reader.result;
       console.log(reader);
       axios
-        .post(`${server}/api/imagetogif2`, {
+        .post(`${server}/api/getGifFromVideo`, {
           link: base64data,
         })
         .then((res) => {
           setConvertvid(res.data);
-          //      <Videoo
-          //   ffmpeg={ffmpeg}
-          //   complete={framesfetched}
-          //   public_id={res.data}
-          // />
-
-          // setConvert2(false);
           setGif2(false);
-          // setConvert2(true);
         });
     };
   };
@@ -180,24 +206,8 @@ const App = (props) => {
   // };
 
   const ImageToGif = async () => {
-    let base64data;
-    var reader = new FileReader();
-
-    reader.readAsDataURL(video);
-    // await reader.readAsDataURL(new Blob([video.buffer]));
-    reader.onloadend = function () {
-      base64data = reader.result;
-      console.log(reader);
-      axios
-        .post(`${server}/api/imagetogif2`, {
-          link: base64data,
-        })
-        .then(async (res) => {
-          setConvertImg(res.data);
-          setGif2(false);
-          //setConvert2(true);
-        });
-    };
+          setConvertImg(convertImage2);
+    
   };
 
   return (
@@ -234,11 +244,7 @@ const App = (props) => {
             );
           })} */}
         {convertimg && (
-          <Imagee
-            ffmpeg={ffmpeg}
-            complete={framesfetched}
-            public_id={convertimg}
-          />
+          <Imagee ffmpeg={ffmpeg} complete={framesfetched} image={convertimg} />
         )}
         {convertvid && (
           <Videoo
@@ -270,7 +276,12 @@ const App = (props) => {
           }}> help</div>
         </div>
       )}
-
+ <Container >
+   {console.log(getThumbnails)}{
+    <Filter data={getThumbnails} />
+   }
+          
+        </Container>
     </>
   );
 };

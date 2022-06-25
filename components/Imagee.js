@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import axios from "axios";
-import { server } from "../config";
+import { cloud_name, server } from "../config";
 import { fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
 
@@ -54,7 +54,7 @@ const App = (props) => {
       "writeFile",
       `c${name}`,
       await fetchFile(
-        `http://res.cloudinary.com/tarun12/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_thug_life,w_1.0,x_${x},y_0/${public_id}.png`
+        `http://res.cloudinary.com/${cloud_name}/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_thug_life,w_1.0,x_${x},y_0/${public_id}.webp`
       )
     );
 
@@ -62,17 +62,18 @@ const App = (props) => {
   };
 
   useEffectOnce(() => {
-    const x = 600;
+    const x = 1200;
     const angle = 290;
-
+    console.log(props.image.eager[0].url);
+    console.log(props.image.eager[1].url);
     for (let i = 1; i < 30; i++) {
       //console.log(i)
       setTimeout(async () => {
         console.log(i * 2000);
         saveFrameToFFmpeg(
-          props.public_id,
-          `output` + ("0000" + i).slice(-3) + ".png",
-          x - 20 * i,
+          props.image.public_id,
+          `output` + ("0000" + i).slice(-3) + ".webp",
+          x - 40 * i,
           angle - 10 * i,
           i * 2000
         );
@@ -83,8 +84,8 @@ const App = (props) => {
       setTimeout(async () => {
         console.log(i * 2000);
         saveFrameToFFmpeg(
-          props.public_id,
-          `output` + ("0000" + i).slice(-3) + ".png",
+          props.image.public_id,
+          `output` + ("0000" + i).slice(-3) + ".webp",
           0,
           0,
           i * 2000

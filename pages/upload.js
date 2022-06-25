@@ -21,11 +21,9 @@ const App = () => {
   return (
     <>
       {/* <ByFormData/>   */}
-
       <Header />
       <Banner />
       <WrapBox>
-
         <Layout>
           <Flex>
             <Button onClick={() => settype2("videotogif")} > Video to Gif</Button>

@@ -9,8 +9,9 @@ cloudinary.config({
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "10mb",
+      sizeLimit: "500mb",
     },
+    responseLimit: "500mb",
   },
 };
 export default async function handler(req, res) {
@@ -31,7 +32,7 @@ export default async function handler(req, res) {
             height: "0.5",
             flags: "region_relative",
           },
-          { effect: "auto_contrast" },
+          { effect: "auto_contrast", format:"webp" },
         ],
       },
       (err, image) => {
