@@ -62,17 +62,18 @@ const App = (props) => {
   };
 
   useEffectOnce(() => {
-    const x = 600;
+    const x = 1200;
     const angle = 290;
-
+    console.log(props.image.eager[0].url);
+    console.log(props.image.eager[1].url);
     for (let i = 1; i < 30; i++) {
       //console.log(i)
       setTimeout(async () => {
         console.log(i * 2000);
         saveFrameToFFmpeg(
-          props.public_id,
+          props.image.public_id,
           `output` + ("0000" + i).slice(-3) + ".png",
-          x - 20 * i,
+          x - 40 * i,
           angle - 10 * i,
           i * 2000
         );
@@ -83,7 +84,7 @@ const App = (props) => {
       setTimeout(async () => {
         console.log(i * 2000);
         saveFrameToFFmpeg(
-          props.public_id,
+          props.image.public_id,
           `output` + ("0000" + i).slice(-3) + ".png",
           0,
           0,

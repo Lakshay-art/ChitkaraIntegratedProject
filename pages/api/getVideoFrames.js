@@ -9,8 +9,9 @@ cloudinary.config({
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "10mb",
+      sizeLimit: "500mb",
     },
+    responseLimit: "500mb",
   },
 };
 export default async function handler(req, res) {
