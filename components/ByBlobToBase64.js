@@ -7,6 +7,7 @@ import React from "react";
 import axios from "axios";
 import { server } from "../config";
 import { BtnText, ButtonGiff, Container, FlexBox } from "./Banner/Banner.styles";
+import { shadow } from "@cloudinary/url-gen/actions/effect";
 
 const ffmpeg = createFFmpeg({
   log: true,
@@ -22,6 +23,7 @@ const App = (props) => {
   const [convertimg, setConvertimg] = React.useState();
   const [convertvid, setConvertvid] = React.useState();
   const [gif, setGif] = React.useState(false);
+  const [active, setActive] = React.useState(true);
 
   const setReady2 = React.useCallback(
     (state) => {
@@ -238,7 +240,7 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-      {gif && (
+      {gif && active && (
         <div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
@@ -246,6 +248,9 @@ const App = (props) => {
             src={gif}
             unoptimized="true"
           />
+          <div onClick={() => {
+            setActive(!active)
+          }}> help</div>
         </div>
       )}
 

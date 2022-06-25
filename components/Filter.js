@@ -7,11 +7,11 @@ const data = [
         desc: 'Face Edit '
     },
     {
-        Image: '/Assets/img-6.png',
+        Image: '/Assets/img-13.png',
         desc: 'Just Gif It'
     },
     {
-        Image: '/Assets/img-2.png',
+        Image: '/Assets/img-12.png',
         desc: 'Transformations'
     },
     {
@@ -19,10 +19,13 @@ const data = [
         desc: 'Crop It'
     },
     {
-        Image: '/Assets/thug_life1.png',
+        Image: '/Assets/img-9.png',
         desc: 'Edit'
     }
 ]
+const tap = () => {
+    console.log(12);
+}
 const Filter = () => {
 
     return (
@@ -30,16 +33,17 @@ const Filter = () => {
             {
                 data.map((item, index) => {
                     return (
-                        <ImageWrap>
-                            <Image src={item.Image} height="auto" width='200px' />
-                            <FilterText>
+                        <ImageWrap onClick={() => {
+                            tap()
+                        }}   >
+                            <><Image src={item.Image} height="60px" width='60px' /><FilterText>
                                 {item.desc}
-                            </FilterText>
+                            </FilterText></>
                         </ImageWrap>
                     )
                 })
             }
-        </Filters>
+        </Filters >
     )
 
 }

@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import react from 'react'
-import { FlexBox, Text, TextAnimation, TextWrap, Title } from './Banner.styles';
+import { FlexBox, Highlight, Text, TextAnimation, TextWrap, Title } from './Banner.styles';
 
 const Banner = () => {
     return (
         <FlexBox>
             <TextWrap>
                 <TextAnimation>
-                    <div>Crazy Editing</div>
-                    <div>Crazy Gif</div>
+                    <div>Crazy<Highlight> Editing</Highlight></div>
+                    <div>Crazy<Highlight> Gif</Highlight></div>
                     {/* <div>Crazy Animation</div> */}
                 </TextAnimation>
                 <Title>The leader in Image and Video Editing.</Title>
