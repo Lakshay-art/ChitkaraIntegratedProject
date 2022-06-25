@@ -24,12 +24,11 @@
   
 }
 @media (max-width: 480px) {
-  .main {
-padding-left: 2%;
-  }
-}
-@media (max-width: 480px) {
   .layout {
 padding: 0px;
+  }
+  .main {
+    padding-left: 2%;
+      max-height: 100%;
   }
 }

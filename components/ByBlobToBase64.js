@@ -267,7 +267,7 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-      {gif && active && (
+      {!gif && active && (
         <div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
