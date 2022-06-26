@@ -1,12 +1,8 @@
 {
-  "name": "next-crash-course",
+  "name": "gifit",
   "version": "0.1.0",
   "private": true,
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false
-  },
+  
   "scripts": {
     "dev": "next dev",
     "build": "next build",

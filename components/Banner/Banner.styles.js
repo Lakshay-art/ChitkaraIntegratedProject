@@ -4,56 +4,62 @@ display:flex;
 flex-wrap:wrap;
 color:white;
 overflow:hidden;
-width:100.45%;
-overflow:hidden;
+width:80%;
 background-image: linear-gradient(to left top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 justify-content:space-between;
-padding-left:10px;
+margin:10px auto;
+border-radius:20px;
 @media(max-width:475px)
 {
   height:fit-content;
-margin-left:-8px;
-width:100.86%;
+// margin-left:-8px;
+width:80%;
 }
 `
 export const Text = styled.div`
 font-size:22px;
 line-height:26.4px;
 text-align:left;
+padding-bottom:10px;
+
 @media (max-width:485px){
   font-size:14px;
   font-weight:200px;
-  height:45px;
+  height:max-content;
+ 
   }
 `
 export const Title = styled.div`
 font-size:52px;
+
 line-height:52px;
 text-align:left;
 @media (max-width:485px){
-font-size:20px;
-font-weight:200px;
-line-height:40px;
+font-size:24px;
+font-weight:400;
+line-height:25px;
 }
 
 `
 export const TextWrap = styled.div`
 max-width:720px;
 padding-top:23px;
-gap:.5rem;
+gap:.5rem;padding:20px;
 display:flex;
 padding-bottom:9px;
 flex-direction:column;
+
 @media (max-width:485px){
   gap:0px;
- 
+ padding:10px;
 }
 `
 export const Button = styled.button`
+width:50%;
     background-position: center;
     transition: background 0.8s;
 border: none;
-  border-radius: 2px;
+  border-radius: 20px;
   padding: 12px 18px;
   font-size: 16px;
   text-transform: uppercase;
@@ -70,8 +76,16 @@ border: none;
 `
 export const Flex = styled.div`
 display:flex;
-flex-direction-column;
-gap:5px;
+flex-direction:row;
+  width:400px;
+justify-content:center;
+
+// margin:0 auto;
+gap:15px;
+@media(max-width:1000px){
+width:100%;
+  //
+}
 `
 export const ButtonGiff = styled.button`
 background: rgb(247,150,192);
@@ -98,7 +112,7 @@ background:red;
 export const TextAnimation = styled.div`
 display:inline-block;
 width:100%;
-height:40px;
+height:20px;
 
 overflow:hidden;
 
@@ -148,8 +162,17 @@ div &{
  `
 
 export const Container = styled.div`
-
+// @media (max-width:468px){
+//  display:none;
+    
+//   }
 `
+// export const Container2 = styled.div`
+// @media (min-width:468px){
+//  display:none;
+    
+//   }
+// `
 export const WrapBox = styled.div`
 display:flex;
 margin-top:20px;
@@ -162,22 +185,42 @@ cursor:pointer;
 display:flex;
 flex-wrap:wrap;
 border:1px solid white;
+border-radius:20px;
+padding:5px;
 justify-content:center;
-min-width: 86px;
+min-width: 66px;
 flex-direction:column;
 margin:5px;
-border: 3px solid #1fe8b6;;
+border: 3px solid #1fe8b6;
+@media (max-width:468px){
+min-width: 56px;
+  
+}
 `
 export const Filters = styled.div`
 display:flex;
 flex-direction:row;
-width:410px;
+width:100%;
+max-width:400px;
 overflow:scroll;
-@media (max-width: 480px) {
-width:90vw;
+&::-webkit-scrollbar { 
+  display: none;
+} 
+@media (max-width: 1000px) {
+width:75vw;
+max-width:1000px;
 
 }
 `
+export const FilterCover = styled.div`
+// width:80%;
+// margin:auto;
+`
+export const FilterWrapper = styled.div`
+display:flex;
+flex-direction:column;
+
+}`
 export const FilterText = styled.div`
 margin :0 auto;
 font-size: 14px;
@@ -185,11 +228,14 @@ font-family: Arial, Helvetica, sans-serif;
 background: linear-gradient(to right, #f32170,#ff6b08, #cf23cf, #eedd44);
 -webkit-text-fill-color: transparent;
 -webkit-background-clip: text;
+text-align:center;
 `
 export const Highlight = styled.span`
 color:red;`
 export const Imgs = styled.div`
-@media (max-width:485px)
+height:100%;
+
+@media (max-width:1272px)
 {
   display:none;
 }

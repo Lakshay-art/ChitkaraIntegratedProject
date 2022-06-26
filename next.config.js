@@ -1,8 +1,16 @@
 module.exports = {
   images: {
-    domains: ["", "localhost", "cdn.pixabay.com", "media.istockphoto.com", "res.cloudinary.com"],
+    domains: ["", "localhost", "cdn.pixabay.com", "media.istockphoto.com", "res.cloudinary.com","chitkara-ip.vercel.app"],
   },
-
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/upload',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {
