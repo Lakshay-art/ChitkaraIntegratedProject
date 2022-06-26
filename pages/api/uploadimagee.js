@@ -4,7 +4,7 @@ export const config = {
     bodyParser: {
       sizeLimit: "500mb",
     },
-    responseLimit: "500mb",
+    responseLimit: "500mb", 
   },
 };
 export default async function handler(req, res) {
