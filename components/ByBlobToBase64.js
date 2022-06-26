@@ -6,7 +6,7 @@ import Image from "next/image";
 import React from "react";
 import axios from "axios";
 import { server } from "../config";
-import { BtnText, ButtonGiff, Container, Container2, FlexBox } from "./Banner/Banner.styles";
+import { BtnText, ButtonGiff, Container, Container2, FlexBox, Loader } from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
 
@@ -55,7 +55,7 @@ const App = (props) => {
     },
     [video]
   );
-  
+
   const setConvertVideo = React.useCallback(
     (state) => {
       setConvertvid(state);
@@ -74,8 +74,8 @@ const App = (props) => {
     //setGif2(false)
 
     load();
-   // const x = 300;
-   // const angle = 290;
+    // const x = 300;
+    // const angle = 290;
     // let array = [];
     // for (let i = 1; i < 30; i++) {
     //   array.push({
@@ -85,7 +85,7 @@ const App = (props) => {
     //     delay: i * 2000,
     //   });
     // }
-  //  setArray1(array);
+    //  setArray1(array);
     console.log("-------------change------------");
     console.log(props.file);
     if (props.file.length != 0) {
@@ -160,7 +160,7 @@ const App = (props) => {
       );
       console.log(url);
       setGif2(url);
-      array2=[];
+      array2 = [];
     }
   };
 
@@ -201,9 +201,9 @@ const App = (props) => {
   // };
 
   const ImageToGif = async () => {
-    
-  };
 
+  };
+  { console.log('12' + gif) }
   return (
     <>
       {props.type == "videotogif" && (
@@ -237,7 +237,7 @@ const App = (props) => {
               />
             );
           })} */}
-      
+
         {convertvid && (
           <Videoo
             ffmpeg={ffmpeg}
@@ -254,37 +254,37 @@ const App = (props) => {
             height="500"
             width="500"
             src={gif}
-          unoptimized="true"
+            unoptimized="true"
           />
           <div onClick={() => {
             setActive(!active)
           }}>x</div>
         </div>
-      )}  
-       {!gif &&  <div className={styles.finaloutput2}>
-          <Image
-            className={styles.finalgif}
-            height="450"
-            width="500"
-            src={'/Assets/Banner.webp'}
-          // unoptimized="true"
-          />
-          </div>}
+      )}
+      {!gif && <div className={styles.finaloutput2}>
+        <Image
+          className={styles.finalgif}
+          height="450"
+          width="500"
+          src={'/Assets/Banner.webp'}
+        // unoptimized="true"
+        />
+      </div>}
       <Container >
-   {console.log(getThumbnails)}{
-    <Filter  data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched}/>
-   }
-          
-        </Container>
-        {!gif &&  <div className={styles.finaloutput}>
-          <Image
-            className={styles.finalgif}
-            height="450"
-            width="500"
-            src={'/Assets/Banner.webp'}
-          // unoptimized="true"
-          />
-          </div>}
+        {console.log(getThumbnails)}{
+          <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched} />
+        }
+
+      </Container>
+      {!gif && <div className={styles.finaloutput}>
+        <Image
+          className={styles.finalgif}
+          height="450"
+          width="500"
+          src={'/Assets/loader-2.gif'}
+        // unoptimized="true"
+        />
+      </div>}
       {/* //audio
                 <audio controls>
                 <source src={gif} type="audio/ogg"/>
@@ -292,21 +292,29 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-      {gif && active && (
-        <div className={styles.finaloutput}>
+
+      {gif && (
+
+        < div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
             height="500"
             width="500"
             src={gif}
-           unoptimized="true"
+            unoptimized="true"
           />
-          <div onClick={() => {
-            setActive(!active)
-          }}>x</div>
+          <a href='/Assets/thug_life1.png' download='File'>Donwload here</a>
         </div>
-      )}
- 
+      )
+
+      }
+      {/* 
+      <div onClick={() => {
+        setActive(!active)
+      }}>x</div> */}
+
+
+
     </>
   );
 };
