@@ -42,7 +42,7 @@ import { useEffect } from "react";
 const App = (props) => {
   const [gif, setGif] = React.useState(false);
   // const [called, setCalled] = React.useState(false);
-  console.log(props.ffmpeg);
+ // console.log(props.ffmpeg);
 
   // var base64data;
   // const getLastFrame=()=>{
