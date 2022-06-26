@@ -54,7 +54,7 @@ useEffect(() => {
                         <ImageWrap onClick={() => {
                             tap(assets[index])
                         }}   >
-                           <Image src={item.url} height="80px" width='80px' />
+                           <Image src={item.secure_url} height="80px" width='80px' />
                            </ImageWrap>
                            <FilterText>
                                 {Desc[index]}  
