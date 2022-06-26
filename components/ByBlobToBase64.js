@@ -1,6 +1,6 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
-import Imagee from "./Imagee";
+
 import Videoo from "./Videoo";
 import Image from "next/image";
 import React from "react";
@@ -21,7 +21,6 @@ const App = (props) => {
   const [array1, setArray1] = React.useState([]);
   // const [array2, setArray2] = React.useState([]);
   const [video, setVideo] = React.useState(false);
-  const [convertimg, setConvertimg] = React.useState();
   const [convertImage2, setConvertimg2] = React.useState();
   const [getThumbnails, setgetThumbnails] = React.useState([
     {
@@ -56,12 +55,7 @@ const App = (props) => {
     },
     [video]
   );
-  const setConvertImg = React.useCallback(
-    (state) => {
-      setConvertimg(state);
-    },
-    [convertimg]
-  );
+  
   const setConvertVideo = React.useCallback(
     (state) => {
       setConvertvid(state);
@@ -206,7 +200,6 @@ const App = (props) => {
   // };
 
   const ImageToGif = async () => {
-          setConvertImg(convertImage2);
     
   };
 
@@ -243,9 +236,7 @@ const App = (props) => {
               />
             );
           })} */}
-        {convertimg && (
-          <Imagee ffmpeg={ffmpeg} complete={framesfetched} image={convertimg} />
-        )}
+      
         {convertvid && (
           <Videoo
             ffmpeg={ffmpeg}
@@ -277,7 +268,7 @@ const App = (props) => {
       )}
  <Container >
    {console.log(getThumbnails)}{
-    <Filter data={getThumbnails} />
+    <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched}/>
    }
           
         </Container>

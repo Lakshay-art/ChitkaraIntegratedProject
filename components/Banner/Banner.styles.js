@@ -149,14 +149,22 @@ flex-wrap:wrap;
 border:1px solid white;
 justify-content:center;
 // height: 90px;
-    width: 92px;
+    min-width: 62px;
 
 flex-direction:column;
 margin:10px;
-border: 3px solid #1fe8b6;;
+overflow-x:scroll;
+
+// border: 3px solid #1fe8b6;;
 `
 export const Filters = styled.div`
+display:flex;
+// flex-wrap:wrap;
+overflow-x:scroll;
 
+
+    width: 402px;
+flex-direction:row;
 `
 export const FilterText = styled.div`
 margin :0 auto;
