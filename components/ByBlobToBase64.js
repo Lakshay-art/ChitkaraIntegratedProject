@@ -6,9 +6,6 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { server } from "../config";
-<<<<<<< HEAD
-import { BtnText, ButtonGiff, Container, Container2, Download, FlexBox, Loader } from "./Banner/Banner.styles";
-=======
 import {
   BtnText,
   ButtonGiff,
@@ -17,7 +14,6 @@ import {
   FlexBox,
   Loader,
 } from "./Banner/Banner.styles";
->>>>>>> main
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
 
@@ -100,7 +96,7 @@ const App = (props) => {
     console.log("-------------change------------");
     console.log(props.file);
     if (props.file.length != 0) {
-    //  setVideo2(props.file[0].file);
+      //  setVideo2(props.file[0].file);
       let base64data;
       var reader = new FileReader();
       if (props.type == "imagetogif") {
@@ -121,7 +117,7 @@ const App = (props) => {
             });
         };
       }
-      else{
+      else {
         reader.readAsDataURL(new Blob([props.file[0].file], { type: "image/gif" }));
         reader.onloadend = function async() {
           base64data = reader.result;
@@ -194,7 +190,7 @@ const App = (props) => {
   const videoToGif = async () => {
     var reader = new FileReader();
     let base64data;
-    
+
   };
 
   // const ImageToGif = async () =>
@@ -215,7 +211,7 @@ const App = (props) => {
   //   setConvert2(true);
   // };
 
-  const ImageToGif = async () => {};
+  const ImageToGif = async () => { };
   {
     console.log("12" + gif);
   }
@@ -272,20 +268,6 @@ const App = (props) => {
           </div>
         </div>
       )}
-<<<<<<< HEAD
-      {!gif && <div className={styles.finaloutput2}>
-        <Image
-          className={styles.finalgif}
-          height="450"
-          width="500"
-          src={'/Assets/Banner.webp'}
-        // unoptimized="true"
-        />
-      </div>}
-      <Container >
-        {console.log(getThumbnails)}{
-          <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched} tapped={tapped} />
-=======
       {!gif && (
         <div className={styles.finaloutput2}>
           <Image
@@ -293,7 +275,7 @@ const App = (props) => {
             height="450"
             width="500"
             src={"/Assets/Banner.webp"}
-            // unoptimized="true"
+          // unoptimized="true"
           />
         </div>
       )}
@@ -307,10 +289,8 @@ const App = (props) => {
             complete={framesfetched}
             type={props.type}
           />
->>>>>>> main
         }
       </Container>
-<<<<<<< HEAD
 
       {console.log(`${loader}`)}
 
@@ -324,19 +304,6 @@ const App = (props) => {
         />
       </div>}
 
-=======
-      {!gif && (
-        <div className={styles.finaloutput}>
-          <Image
-            className={styles.finalgif}
-            height="450"
-            width="500"
-            src={"/Assets/loader-2.gif"}
-            // unoptimized="true"
-          />
-        </div>
-      )}
->>>>>>> main
       {/* //audio
                 <audio controls>
                 <source src={gif} type="audio/ogg"/>
@@ -346,12 +313,6 @@ const App = (props) => {
 
       {gif && (
         <div className={styles.finaloutput}>
-<<<<<<< HEAD
-
-          {/* <a href={`${gif}`} download='File' className={styles.anchor}>qw</a> */}
-
-=======
->>>>>>> main
           <Image
             className={styles.finalgif}
             height="500"
@@ -361,17 +322,11 @@ const App = (props) => {
 
             unoptimized="true"
           />
-<<<<<<< HEAD
           <Download>
             <a href={`${gif}`} download='File' className={styles.anchor}>
               <Image src="/Assets/d-1.png" height="80px" width={'80px'} />
             </a>
           </Download>
-=======
-          <a href="/Assets/thug_life1.png" download="File">
-            Donwload here
-          </a>
->>>>>>> main
         </div>
       )}
       {/* 
