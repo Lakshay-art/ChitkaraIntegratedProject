@@ -9,7 +9,7 @@ const DropMessage = () => {
                     <Icon onClick={() => { setActive(!active) }}> x</Icon>
                     <FlexBox>
                         <Text>Suggestion</Text>
-                        <TextDrop>Please clear Cache to make it more optimized</TextDrop>
+                        <TextDrop>Please Clear Cache In Your browser To optimize the performance</TextDrop>
                     </FlexBox>
                 </WrapText >)}
         </>)
