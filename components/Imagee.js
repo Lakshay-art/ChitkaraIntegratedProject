@@ -4,39 +4,40 @@ import axios from "axios";
 import { cloud_name, server } from "../config";
 import { fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
+import { useEffect } from "react";
 
-export const useEffectOnce = (effect) => {
-  const destroyFunc = React.useRef();
-  const effectCalled = React.useRef(false);
-  const renderAfterCalled = React.useRef(false);
-  const [val, setVal] = React.useState(0);
+// export const useEffectOnce = (effect) => {
+//   const destroyFunc = React.useRef();
+//   const effectCalled = React.useRef(false);
+//   const renderAfterCalled = React.useRef(false);
+//   const [val, setVal] = React.useState(0);
 
-  if (effectCalled.current) {
-    renderAfterCalled.current = true;
-  }
+//   if (effectCalled.current) {
+//     renderAfterCalled.current = true;
+//   }
 
-  React.useEffect(() => {
-    // only execute the effect first time around
-    if (!effectCalled.current) {
-      destroyFunc.current = effect();
-      effectCalled.current = true;
-    }
+//   React.useEffect(() => {
+//     // only execute the effect first time around
+//     if (!effectCalled.current) {
+//       destroyFunc.current = effect();
+//       effectCalled.current = true;
+//     }
 
-    // this forces one render after the effect is run
-    setVal((val) => val + 1);
+//     // this forces one render after the effect is run
+//     setVal((val) => val + 1);
 
-    return () => {
-      // if the comp didn't render since the useEffect was called,
-      // we know it's the dummy React cycle
-      if (!renderAfterCalled.current) {
-        return;
-      }
-      if (destroyFunc.current) {
-        destroyFunc.current();
-      }
-    };
-  }, []);
-};
+//     return () => {
+//       // if the comp didn't render since the useEffect was called,
+//       // we know it's the dummy React cycle
+//       if (!renderAfterCalled.current) {
+//         return;
+//       }
+//       if (destroyFunc.current) {
+//         destroyFunc.current();
+//       }
+//     };
+//   }, []);
+// };
 
 const App = (props) => {
   const [gif, setGif] = React.useState(false);
@@ -49,19 +50,19 @@ const App = (props) => {
   //   return props.ffmpeg.FS("readFile",`coutput029.png`)
   // }
 
-  const saveFrameToFFmpeg = async (public_id, name, x, angle, delay) => {
+  const saveFrameToFFmpeg = async (public_id, name, x, angle, asset) => {
     props.ffmpeg.FS(
       "writeFile",
       `c${name}`,
       await fetchFile(
-        `http://res.cloudinary.com/${cloud_name}/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_thug_life,w_1.0,x_${x},y_0/${public_id}.webp`
+        `http://res.cloudinary.com/${cloud_name}/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_${asset},w_1.0,x_${x},y_0/${public_id}.webp`
       )
     );
 
     props.complete();
   };
 
-  useEffectOnce(() => {
+  useEffect(() => {
     const x = 1200;
     const angle = 290;
     console.log(props.image.eager[0].url);
@@ -75,12 +76,12 @@ const App = (props) => {
           `output` + ("0000" + i).slice(-3) + ".webp",
           x - 40 * i,
           angle - 10 * i,
-          i * 2000
+          props.asset
         );
       }, i * 2000);
     }
 
-    for (let i = 30; i < 60; i++) {
+    for (let i = 30; i < 50; i++) {
       setTimeout(async () => {
         console.log(i * 2000);
         saveFrameToFFmpeg(
@@ -88,13 +89,13 @@ const App = (props) => {
           `output` + ("0000" + i).slice(-3) + ".webp",
           0,
           0,
-          i * 2000
+        props.asset
         );
       }, i * 2000);
     }
 
     return () => console.log("my effect is destroying");
-  });
+  },[props.asset]);
 
   return (
     <>
