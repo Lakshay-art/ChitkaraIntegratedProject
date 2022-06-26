@@ -4,38 +4,37 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Filters, FilterText, ImageWrap, Text } from "./Banner/Banner.styles";
 
-const Desc=["Thug Life","Happy Birthday","Squid Game1","Squid Game2","Squid Game3","Squid Game3","Squid Game3","Squid Game3","Squid Game3","Squid Game3"]
+const Desc = ["Thug Life", "Happy Birthday", "Squid Game1", "Squid Game2", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3"]
 
 const tap = () => {
     console.log(12);
 }
 const Filter = (props) => {
-    const [data,setData]=useState([
-    {
-        url: '/Assets/thug_life1.png',
-    },
-    {
-        url: '/Assets/img-13.png', 
-    },
-    {
-        url: '/Assets/img-12.png',
-    },
-    {
-        url: '/Assets/img-4.png',
-    },
-    {
-        url: '/Assets/img-9.png',
-    }
-]); 
-useEffect(() => {
-  setData(props.data)
-
-}, [props.data])
-
+    const [data, setData] = useState([
+        {
+            url: '/Assets/thug_life1.png',
+        },
+        {
+            url: '/Assets/img-13.png',
+        },
+        {
+            url: '/Assets/img-12.png',
+        },
+        {
+            url: '/Assets/img-4.png',
+        },
+        {
+            url: '/Assets/img-9.png',
+        }
+    ]);
+    useEffect(() => {
+        setData(props.data)
+        console.log(props.data)
+    }, [props.data])
     return (
         <Filters>
             {
-               data&& data.map((item, index) => {
+                data && data.map((item, index) => {
                     return (
                         <ImageWrap onClick={() => {
                             tap()

@@ -103,7 +103,7 @@ export default async function handler(req, res) {
     cloudinary.uploader.upload(
       link,
 
-      { width: "1200",format:"webp", eager: eager_options },
+      { width: "1200", format: "webp", eager: eager_options },
       function (err, image) {
         if (err) {
           return res.status(500).send(err);

@@ -2,24 +2,39 @@ import styled from '@emotion/styled'
 export const FlexBox = styled.div`
 display:flex;
 flex-wrap:wrap;
-margin:-8px;
 color:white;
-// margin-top:100px;
 overflow:hidden;
-width:101vw !important;
+width:100.45%;
+overflow:hidden;
 background-image: linear-gradient(to left top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 justify-content:space-between;
 padding-left:10px;
+@media(max-width:475px)
+{
+  height:fit-content;
+margin-left:-8px;
+width:100.86%;
+}
 `
 export const Text = styled.div`
 font-size:22px;
 line-height:26.4px;
 text-align:left;
+@media (max-width:485px){
+  font-size:14px;
+  font-weight:200px;
+  height:45px;
+  }
 `
 export const Title = styled.div`
 font-size:52px;
 line-height:52px;
 text-align:left;
+@media (max-width:485px){
+font-size:20px;
+font-weight:200px;
+line-height:40px;
+}
 
 `
 export const TextWrap = styled.div`
@@ -29,6 +44,10 @@ gap:.5rem;
 display:flex;
 padding-bottom:9px;
 flex-direction:column;
+@media (max-width:485px){
+  gap:0px;
+ 
+}
 `
 export const Button = styled.button`
     background-position: center;
@@ -127,45 +146,51 @@ div &{
 
  }
  `
-export const Container = styled.div`
-max-height:400px;
 
-margin-right:100px;
-border-radius:20px;
-overflow:scroll;
+export const Container = styled.div`
+
 `
 export const WrapBox = styled.div`
 display:flex;
 margin-top:20px;
-flex-direction:row;
+flex-direction:column;
 flex-wrap:wrap;
 justify-content:center;
 `
 export const ImageWrap = styled.div`
-
 cursor:pointer;
 display:flex;
 flex-wrap:wrap;
 border:1px solid white;
 justify-content:center;
-// height: 90px;
-    width: 92px;
-
+min-width: 86px;
 flex-direction:column;
-margin:10px;
+margin:5px;
 border: 3px solid #1fe8b6;;
 `
 export const Filters = styled.div`
+display:flex;
+flex-direction:row;
+width:410px;
+overflow:scroll;
+@media (max-width: 480px) {
+width:90vw;
 
+}
 `
 export const FilterText = styled.div`
 margin :0 auto;
 font-size: 14px;
 font-family: Arial, Helvetica, sans-serif;
-background: linear-gradient(to right, #f32170,
-        #ff6b08, #cf23cf, #eedd44);
+background: linear-gradient(to right, #f32170,#ff6b08, #cf23cf, #eedd44);
 -webkit-text-fill-color: transparent;
 -webkit-background-clip: text;
 `
 export const Highlight = styled.span`
 color:red;`
+export const Imgs = styled.div`
+@media (max-width:485px)
+{
+  display:none;
+}
+`
