@@ -42,7 +42,8 @@ function App(props) {
       // stylePanelLayout='integrated circle'
       //  styleLoadIndicatorPosition='top'
       // styleButtonRemoveItemPosition='center bottom'
-      /> </div>
+      />
+    </div>
     <ByBlobToBase64 type={props.type} file={files} />
     {console.log(files)}
   </>

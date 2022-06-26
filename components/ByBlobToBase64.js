@@ -24,21 +24,21 @@ const App = (props) => {
   const [convertImage2, setConvertimg2] = React.useState();
   const [getThumbnails, setgetThumbnails] = React.useState([
     {
-        url: '/Assets/thug_life1.png',
+      url: '/Assets/thug_life1.png',
     },
     {
-        url: '/Assets/img-13.png', 
+      url: '/Assets/img-13.png',
     },
     {
-        url: '/Assets/img-12.png',
+      url: '/Assets/img-12.png',
     },
     {
-        url: '/Assets/img-4.png',
+      url: '/Assets/img-4.png',
     },
     {
-        url: '/Assets/img-9.png',
+      url: '/Assets/img-9.png',
     }
-]);
+  ]);
   const [convertvid, setConvertvid] = React.useState();
   const [gif, setGif] = React.useState(false);
   const [active, setActive] = React.useState(true);
@@ -91,24 +91,24 @@ const App = (props) => {
     if (props.file.length != 0) {
       setVideo2(props.file[0].file);
       let base64data;
-    var reader = new FileReader();
+      var reader = new FileReader();
 
-    reader.readAsDataURL(props.file[0].file);
-    // await reader.readAsDataURL(new Blob([video.buffer]));
-    reader.onloadend = function () {
-      base64data = reader.result;
-      console.log(reader);
-      axios
-        .post(`${server}/api/uploadImage`, {
-          link: base64data,
-        })
-        .then(async (res) => {
-          setgetThumbnails(res.data.eager)
-          setConvertimg2(res.data)
-          setGif2(false);
-          //setConvert2(true);
-        });
-    };
+      reader.readAsDataURL(props.file[0].file);
+      // await reader.readAsDataURL(new Blob([video.buffer]));
+      reader.onloadend = function () {
+        base64data = reader.result;
+        console.log(reader);
+        axios
+          .post(`${server}/api/uploadImage`, {
+            link: base64data,
+          })
+          .then(async (res) => {
+            setgetThumbnails(res.data.eager)
+            setConvertimg2(res.data)
+            setGif2(false);
+            //setConvert2(true);
+          });
+      };
       array2 = [];
     }
   }, [props.file]);
@@ -245,6 +245,12 @@ const App = (props) => {
           />
         )}
       </div>
+      <Container >
+   {console.log(getThumbnails)}{
+    <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched}/>
+   }
+          
+        </Container>
 
       {/* //audio
                 <audio controls>
@@ -253,25 +259,21 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-      {gif && active && (
+      {!gif && active && (
         <div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
-            layout="fill"
-            src={gif}
-            unoptimized="true"
+            height="400px"
+            width="400px"
+            src='/Assets/thug_life1.png'
+          // unoptimized="true"
           />
           <div onClick={() => {
             setActive(!active)
           }}> help</div>
         </div>
       )}
- <Container >
-   {console.log(getThumbnails)}{
-    <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched}/>
-   }
-          
-        </Container>
+ 
     </>
   );
 };
