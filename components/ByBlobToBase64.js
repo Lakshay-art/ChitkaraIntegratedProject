@@ -6,7 +6,7 @@ import Image from "next/image";
 import React from "react";
 import axios from "axios";
 import { server } from "../config";
-import { BtnText, ButtonGiff, Container, FlexBox } from "./Banner/Banner.styles";
+import { BtnText, ButtonGiff, Container, Container2, FlexBox } from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
 
@@ -205,12 +205,12 @@ const App = (props) => {
 
   return (
     <>
-      {props.type == "videotogif" && (
+      {/* {props.type == "videotogif" && (
         <button onClick={videoToGif}>Make this Gif/Video Awesome</button>
       )}
       {props.type == "imagetogif" && (
         <button onClick={ImageToGif}>Gif it!!</button>
-      )}
+      )} */}
       {/* <button onClick={compressMov}>mov!</button> */}
       <div className={styles.flex}>
         {/* {convert && <Imagee key={1} name={"output001.png"} ffmpeg={ffmpeg} complete={framesfetched}/>} */}
@@ -245,13 +245,45 @@ const App = (props) => {
           />
         )}
       </div>
+
+      {gif && active && (
+        <div className={styles.finaloutput2}>
+          <Image
+            className={styles.finalgif}
+            height="500"
+            width="500"
+            src={gif}
+          // unoptimized="true"
+          />
+          <div onClick={() => {
+            setActive(!active)
+          }}>x</div>
+        </div>
+      )}  
+       {!gif &&  <div className={styles.finaloutput2}>
+          <Image
+            className={styles.finalgif}
+            height="450"
+            width="500"
+            src={'/Assets/Banner.webp'}
+          // unoptimized="true"
+          />
+          </div>}
       <Container >
    {console.log(getThumbnails)}{
-    <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched}/>
+    <Filter  data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched}/>
    }
           
         </Container>
-
+        {!gif &&  <div className={styles.finaloutput}>
+          <Image
+            className={styles.finalgif}
+            height="450"
+            width="500"
+            src={'/Assets/Banner.webp'}
+          // unoptimized="true"
+          />
+          </div>}
       {/* //audio
                 <audio controls>
                 <source src={gif} type="audio/ogg"/>
@@ -259,18 +291,18 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-      {!gif && active && (
+      {gif && active && (
         <div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
-            height="400px"
-            width="400px"
-            src='/Assets/thug_life1.png'
+            height="500"
+            width="500"
+            src={gif}
           // unoptimized="true"
           />
           <div onClick={() => {
             setActive(!active)
-          }}> help</div>
+          }}>x</div>
         </div>
       )}
  

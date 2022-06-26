@@ -3,7 +3,7 @@ import Imagee from "./Imagee";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Filters, FilterText, ImageWrap, Text } from "./Banner/Banner.styles";
+import { FilterCover, Filters, FilterText, FilterWrapper, ImageWrap, Text } from "./Banner/Banner.styles";
 
 const Desc=["Thug Life","Happy Birthday","Squid Game1","Squid Game2","Squid Game3","Squid Game3","Squid Game3","Squid Game3","Squid Game3","Squid Game3"]
 const assets=["thug_life","birthdayhat","squidmask1","squidmask2","squidmask3","squidmask1","squidmask2","squidmask3","squidmask3"]
@@ -43,27 +43,28 @@ useEffect(() => {
 
 }, [props.data])
 
-    return (<>
+    return (< FilterCover >
       {convertimg && (
           <Imagee ffmpeg={props.ffmpeg} complete={props.complete} image={convertimg} asset={selected} />
         )} <Filters>
             {
                data&& data.map((item, index) => {
                     return (<>
+                    <FilterWrapper>
                         <ImageWrap onClick={() => {
                             tap(assets[index])
                         }}   >
-                           <Image src={item.url} height="60px" width='60px' />
-                           
+                           <Image src={item.url} height="80px" width='80px' />
+                           </ImageWrap>
                            <FilterText>
                                 {Desc[index]}  
-                            </FilterText></ImageWrap>
+                            </FilterText></FilterWrapper>
                             </>
                       
                     )
                 })
             }
-        </Filters ></>
+        </Filters ></FilterCover>
        
     )
 

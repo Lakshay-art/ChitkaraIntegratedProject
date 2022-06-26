@@ -29,9 +29,9 @@ function App(props) {
       <FilePond
         files={files}
         allowReorder={true}
-        allowMultiple={true}
+        allowMultiple={false}
         onupdatefiles={setFiles2}
-        labelIdle={`Drag & Drop your ${props.type == "videotogif" ? "Video/Gif " : "Image "} or <span class="filepond--label-action">Browse</span>`}
+        labelIdle={`Drag & Drop or <span class="filepond--label-action">Browse</span>`}
         imagePreviewHeight="200"
         allowVideoPreview="true"   // default true
         allowAudioPreview="true"
