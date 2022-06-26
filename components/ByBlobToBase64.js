@@ -3,10 +3,10 @@ import styles from "../styles/Upload.module.css";
 
 import Videoo from "./Videoo";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { server } from "../config";
-import { BtnText, ButtonGiff, Container, Container2, FlexBox, Loader } from "./Banner/Banner.styles";
+import { BtnText, ButtonGiff, Container, Container2, Download, FlexBox, Loader } from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
 
@@ -19,6 +19,10 @@ var array2 = [];
 const App = (props) => {
   const [ready, setReady] = React.useState(false);
   const [array1, setArray1] = React.useState([]);
+  const [loader, setLoader] = React.useState('/Assets/loader-3.gif');
+  // useEffect(() => {
+  //   props.file.length != 0 ? setLoader('/Assets/loader-3.gif') : setLoader('/Assets/Banner.webp')
+  // })
   // const [array2, setArray2] = React.useState([]);
   const [video, setVideo] = React.useState(false);
   const [convertImage2, setConvertimg2] = React.useState();
@@ -49,6 +53,9 @@ const App = (props) => {
     },
     [ready]
   );
+  const tapped = () => {
+    setLoader('/Assets/loader-2.gif')
+  }
   const setVideo2 = React.useCallback(
     (state) => {
       setVideo(state);
@@ -272,19 +279,23 @@ const App = (props) => {
       </div>}
       <Container >
         {console.log(getThumbnails)}{
-          <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched} />
+          <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched} tapped={tapped} />
         }
 
       </Container>
+
+
+
       {!gif && <div className={styles.finaloutput}>
         <Image
           className={styles.finalgif}
-          height="450"
-          width="500"
-          src={'/Assets/loader-2.gif'}
+          height="450px"
+          width="500px"
+          src={loader}
         // unoptimized="true"
         />
       </div>}
+
       {/* //audio
                 <audio controls>
                 <source src={gif} type="audio/ogg"/>
@@ -294,16 +305,24 @@ const App = (props) => {
 
 
       {gif && (
+        <div className={styles.finaloutput}>
 
-        < div className={styles.finaloutput}>
+          {/* <a href={`${gif}`} download='File' className={styles.anchor}>qw</a> */}
+
           <Image
             className={styles.finalgif}
             height="500"
             width="500"
-            src={gif}
+            // src={gif}
+            src={'/Assets/loader-3.gif'}
+
             unoptimized="true"
           />
-          <a href='/Assets/thug_life1.png' download='File'>Donwload here</a>
+          <Download>
+            <a href={`${gif}`} download='File' className={styles.anchor}>
+              <Image src="/Assets/d-1.png" height="80px" width={'80px'} />
+            </a>
+          </Download>
         </div>
       )
 
