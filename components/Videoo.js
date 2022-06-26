@@ -51,7 +51,7 @@ const App = (props) => {
     setTimeout(async () => {
       console.log(delay);
       await axios
-        .post(`${server}/api/getVideoFrames`, {
+        .post(`${server}/api/getvideoframess`, {
           link: `http://res.cloudinary.com/${cloud_name}/pg_${frame}/${public_id}.webp`,
         })
         .then(

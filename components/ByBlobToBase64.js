@@ -99,7 +99,7 @@ const App = (props) => {
         base64data = reader.result;
         console.log(reader);
         axios
-          .post(`${server}/api/uploadimage`, {
+          .post(`${server}/api/uploadimagee`, {
             link: base64data,
           })
           .then(async (res) => {
@@ -172,7 +172,7 @@ const App = (props) => {
       base64data = reader.result;
       console.log(reader);
       axios
-        .post(`${server}/api/getGifFromVideo`, {
+        .post(`${server}/api/getgiffromvideoo`, {
           link: base64data,
         })
         .then((res) => {
