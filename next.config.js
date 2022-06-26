@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ["", "localhost", "cdn.pixabay.com", "media.istockphoto.com", "res.cloudinary.com"],
+    domains: ["", "localhost", "cdn.pixabay.com", "media.istockphoto.com", "res.cloudinary.com","chitkara-ip.vercel.app"],
   },
 
   async headers() {
