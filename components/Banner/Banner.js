@@ -11,10 +11,10 @@ const Banner = () => {
                     <div>Crazy<Highlight> Gif</Highlight></div>
                     {/* <div>Crazy Animation</div> */}
                 </TextAnimation>
-                <Title>The leader in Image and Video Editing.</Title>
-                <Text>Lets Edit Your Video and Image and then Convert into Crazy transition Only on this website.</Text></TextWrap>
+                <Title>Be a creator, within a minute.</Title>
+                <Text>Lets create something worth sharing!!</Text></TextWrap>
             <Imgs>
-                <Image src='/Assets/Banner.webp' width={'400px'} height='200px' />
+                <Image src='/Assets/Banner.webp' width={'350px'} height='200px' />
             </Imgs>
         </FlexBox>
     )

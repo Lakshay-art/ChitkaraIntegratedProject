@@ -1,12 +1,12 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
-import Imagee from "./Imagee";
+
 import Videoo from "./Videoo";
 import Image from "next/image";
 import React from "react";
 import axios from "axios";
 import { server } from "../config";
-import { BtnText, ButtonGiff, Container, FlexBox } from "./Banner/Banner.styles";
+import { BtnText, ButtonGiff, Container, Container2, FlexBox } from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
 
@@ -21,7 +21,6 @@ const App = (props) => {
   const [array1, setArray1] = React.useState([]);
   // const [array2, setArray2] = React.useState([]);
   const [video, setVideo] = React.useState(false);
-  const [convertimg, setConvertimg] = React.useState();
   const [convertImage2, setConvertimg2] = React.useState();
   const [getThumbnails, setgetThumbnails] = React.useState([
     {
@@ -56,12 +55,7 @@ const App = (props) => {
     },
     [video]
   );
-  const setConvertImg = React.useCallback(
-    (state) => {
-      setConvertimg(state);
-    },
-    [convertimg]
-  );
+  
   const setConvertVideo = React.useCallback(
     (state) => {
       setConvertvid(state);
@@ -80,18 +74,18 @@ const App = (props) => {
     //setGif2(false)
 
     load();
-    const x = 300;
-    const angle = 290;
-    let array = [];
-    for (let i = 1; i < 30; i++) {
-      array.push({
-        a: `output` + ("0000" + i).slice(-3) + ".webp",
-        x: x - 10 * i,
-        degree: angle - 10 * i,
-        delay: i * 2000,
-      });
-    }
-    setArray1(array);
+   // const x = 300;
+   // const angle = 290;
+    // let array = [];
+    // for (let i = 1; i < 30; i++) {
+    //   array.push({
+    //     a: `output` + ("0000" + i).slice(-3) + ".webp",
+    //     x: x - 10 * i,
+    //     degree: angle - 10 * i,
+    //     delay: i * 2000,
+    //   });
+    // }
+  //  setArray1(array);
     console.log("-------------change------------");
     console.log(props.file);
     if (props.file.length != 0) {
@@ -147,9 +141,9 @@ const App = (props) => {
   const framesfetched = async () => {
     array2.push("done");
     console.log(array2);
-    console.log(array1);
+    // console.log(array1);
     if (
-      (props.type == "imagetogif" && array2.length == 2 * array1.length - 10) ||
+      (props.type == "imagetogif" && array2.length == 49) ||
       (props.type == "videotogif" && array2.length == 29)
     ) {
       await ffmpeg.run(
@@ -166,6 +160,7 @@ const App = (props) => {
       );
       console.log(url);
       setGif2(url);
+      array2=[];
     }
   };
 
@@ -206,8 +201,7 @@ const App = (props) => {
   // };
 
   const ImageToGif = async () => {
-    setConvertImg(convertImage2);
-
+    
   };
 
   return (
@@ -215,9 +209,9 @@ const App = (props) => {
       {props.type == "videotogif" && (
         <button onClick={videoToGif}>Make this Gif/Video Awesome</button>
       )}
-      {props.type == "imagetogif" && (
+      {/* {props.type == "imagetogif" && (
         <button onClick={ImageToGif}>Gif it!!</button>
-      )}
+      )} */}
       {/* <button onClick={compressMov}>mov!</button> */}
       <div className={styles.flex}>
         {/* {convert && <Imagee key={1} name={"output001.png"} ffmpeg={ffmpeg} complete={framesfetched}/>} */}
@@ -243,9 +237,7 @@ const App = (props) => {
               />
             );
           })} */}
-        {convertimg && (
-          <Imagee ffmpeg={ffmpeg} complete={framesfetched} image={convertimg} />
-        )}
+      
         {convertvid && (
           <Videoo
             ffmpeg={ffmpeg}
@@ -254,12 +246,45 @@ const App = (props) => {
           />
         )}
       </div>
-      <Container >
-        {console.log(getThumbnails)}{
-          <Filter data={getThumbnails} />
-        }
-      </Container>
 
+      {gif && active && (
+        <div className={styles.finaloutput2}>
+          <Image
+            className={styles.finalgif}
+            height="500"
+            width="500"
+            src={gif}
+          unoptimized="true"
+          />
+          <div onClick={() => {
+            setActive(!active)
+          }}>x</div>
+        </div>
+      )}  
+       {!gif &&  <div className={styles.finaloutput2}>
+          <Image
+            className={styles.finalgif}
+            height="450"
+            width="500"
+            src={'/Assets/Banner.webp'}
+          // unoptimized="true"
+          />
+          </div>}
+      <Container >
+   {console.log(getThumbnails)}{
+    <Filter  data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched}/>
+   }
+          
+        </Container>
+        {!gif &&  <div className={styles.finaloutput}>
+          <Image
+            className={styles.finalgif}
+            height="450"
+            width="500"
+            src={'/Assets/Banner.webp'}
+          // unoptimized="true"
+          />
+          </div>}
       {/* //audio
                 <audio controls>
                 <source src={gif} type="audio/ogg"/>
@@ -267,21 +292,21 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-      {!gif && active && (
+      {gif && active && (
         <div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
-            height="400px"
-            width="400px"
-            src='/Assets/thug_life1.png'
-          // unoptimized="true"
+            height="500"
+            width="500"
+            src={gif}
+           unoptimized="true"
           />
           <div onClick={() => {
             setActive(!active)
-          }}> help</div>
+          }}>x</div>
         </div>
       )}
-
+ 
     </>
   );
 };
