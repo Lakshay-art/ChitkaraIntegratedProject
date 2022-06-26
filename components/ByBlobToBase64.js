@@ -284,7 +284,7 @@ const App = (props) => {
 
       </Container>
 
-
+      {console.log(`${loader}`)}
 
       {!gif && <div className={styles.finaloutput}>
         <Image

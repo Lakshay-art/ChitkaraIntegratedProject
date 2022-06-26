@@ -276,11 +276,12 @@ filter: blur(8px);
 background: rgb(59,200,180);
 background: linear-gradient(180deg, rgba(59,200,180,0.8169861694677871) 0%, rgba(230,230,230,0.8337928921568627) 100%);
 position:absolute;
-top:85%;
+// top:85%;
 border-radius:15px;
 right:20px;
+bottom: -43px;
 text-align:center;
-bottom:0;
+
 transform: translate(-50%, -50%);
   // -ms-transform: translate(-50%, -50%);
   // text-align: center;
