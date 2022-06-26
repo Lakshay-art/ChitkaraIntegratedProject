@@ -31,7 +31,7 @@ function App(props) {
         allowReorder={true}
         allowMultiple={false}
         onupdatefiles={setFiles2}
-        labelIdle={`Drag & Drop or <span class="filepond--label-action">Browse</span>`}
+        labelIdle={`Drag & Drop the ${props.type=="imagetogif" ?"Image":"Video" } or <span class="filepond--label-action">Browse</span>`}
         imagePreviewHeight="200"
         allowVideoPreview="true"   // default true
         allowAudioPreview="true"
