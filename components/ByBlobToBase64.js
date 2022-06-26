@@ -6,7 +6,7 @@ import Image from "next/image";
 import React from "react";
 import axios from "axios";
 import { server } from "../config";
-import { BtnText, ButtonGiff, Container, FlexBox } from "./Banner/Banner.styles";
+import { BtnText, ButtonGiff, Container, FlexBox, Loader } from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
 
@@ -209,7 +209,7 @@ const App = (props) => {
     setConvertImg(convertImage2);
 
   };
-
+  { console.log('12' + gif) }
   return (
     <>
       {props.type == "videotogif" && (
@@ -267,8 +267,12 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-      {!gif && active && (
-        <div className={styles.finaloutput}>
+      {!gif && <Loader>
+        Loading....
+      </Loader>}
+      {gif && active && (
+
+        < div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
             height="400px"
@@ -276,11 +280,11 @@ const App = (props) => {
             src='/Assets/thug_life1.png'
           // unoptimized="true"
           />
-          <div onClick={() => {
-            setActive(!active)
-          }}> help</div>
+          <a href='/Assets/thug_life1.png' download='File'>Donwload here</a>
         </div>
-      )}
+      )
+
+      }
 
     </>
   );

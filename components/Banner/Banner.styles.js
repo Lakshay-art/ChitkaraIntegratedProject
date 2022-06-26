@@ -194,3 +194,33 @@ export const Imgs = styled.div`
   display:none;
 }
 `
+export const Loader = styled.div`
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 36px;
+font-family: serif;
+color:red;
+font-weight: bold;
+letter-spacing: 4.4px;
+text-transform: capitalize;
+overflow: hidden;
+&::after
+{
+  position:absolute;
+    color: red;
+    overflow: hidden;
+    content:"Loading...";
+    animation: loading 5s infinite;
+}
+@keyframes loading{
+  0% {
+    width: 0;
+    transform:translateY(100%); 
+}
+100% {
+    width: 100%;
+}
+}
+`

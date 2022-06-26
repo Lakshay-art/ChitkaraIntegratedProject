@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Banner from '../components/Banner/Banner';
 import { Button, Flex, FlexBox, Wrap, WrapBox } from '../components/Banner/Banner.styles';
 import Filter from '../components/Filter';
+import DropMessage from '../components/DropMessage/DropMessage';
 
 // import ByBase64 from '../components/ByBase64'
 
@@ -30,6 +31,7 @@ const App = () => {
             <Button onClick={() => settype2("imagetogif")} > Image to Gif</Button>
           </Flex>
           <Pintura type={type} />  </Layout>
+        <DropMessage />
       </WrapBox>
       {/* <ByBase64/> */}
 
