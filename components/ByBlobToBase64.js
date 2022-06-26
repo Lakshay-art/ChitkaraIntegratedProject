@@ -24,19 +24,19 @@ const App = (props) => {
   const [convertImage2, setConvertimg2] = React.useState();
   const [getThumbnails, setgetThumbnails] = React.useState([
     {
-      url: '/Assets/thug_life1.png',
+      secure_url: '/Assets/thug_life1.png',
     },
     {
-      url: '/Assets/img-13.png',
+      secure_url: '/Assets/img-13.png',
     },
     {
-      url: '/Assets/img-12.png',
+      secure_url: '/Assets/img-12.png',
     },
     {
-      url: '/Assets/img-4.png',
+      secure_url: '/Assets/img-4.png',
     },
     {
-      url: '/Assets/img-9.png',
+      secure_url: '/Assets/img-9.png',
     }
   ]);
   const [convertvid, setConvertvid] = React.useState();

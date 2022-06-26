@@ -21,23 +21,7 @@ const tap = (asset) => {
     setConvertImg(props.image);
     setSelected(asset)
 }
-    const [data,setData]=useState([
-    {
-        url: '/Assets/thug_life1.png',
-    },
-    {
-        url: '/Assets/img-13.png', 
-    },
-    {
-        url: '/Assets/img-12.png',
-    },
-    {
-        url: '/Assets/img-4.png',
-    },
-    {
-        url: '/Assets/img-9.png',
-    }
-]); 
+    const [data,setData]=useState([]); 
 useEffect(() => {
   setData(props.data)
 
