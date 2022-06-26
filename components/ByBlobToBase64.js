@@ -74,18 +74,18 @@ const App = (props) => {
     //setGif2(false)
 
     load();
-    const x = 300;
-    const angle = 290;
-    let array = [];
-    for (let i = 1; i < 30; i++) {
-      array.push({
-        a: `output` + ("0000" + i).slice(-3) + ".webp",
-        x: x - 10 * i,
-        degree: angle - 10 * i,
-        delay: i * 2000,
-      });
-    }
-    setArray1(array);
+   // const x = 300;
+   // const angle = 290;
+    // let array = [];
+    // for (let i = 1; i < 30; i++) {
+    //   array.push({
+    //     a: `output` + ("0000" + i).slice(-3) + ".webp",
+    //     x: x - 10 * i,
+    //     degree: angle - 10 * i,
+    //     delay: i * 2000,
+    //   });
+    // }
+  //  setArray1(array);
     console.log("-------------change------------");
     console.log(props.file);
     if (props.file.length != 0) {
@@ -141,9 +141,9 @@ const App = (props) => {
   const framesfetched = async () => {
     array2.push("done");
     console.log(array2);
-    console.log(array1);
+    // console.log(array1);
     if (
-      (props.type == "imagetogif" && array2.length == 2 * array1.length - 10) ||
+      (props.type == "imagetogif" && array2.length == 49) ||
       (props.type == "videotogif" && array2.length == 29)
     ) {
       await ffmpeg.run(
@@ -160,6 +160,7 @@ const App = (props) => {
       );
       console.log(url);
       setGif2(url);
+      array2=[];
     }
   };
 
@@ -205,10 +206,10 @@ const App = (props) => {
 
   return (
     <>
-      {/* {props.type == "videotogif" && (
+      {props.type == "videotogif" && (
         <button onClick={videoToGif}>Make this Gif/Video Awesome</button>
       )}
-      {props.type == "imagetogif" && (
+      {/* {props.type == "imagetogif" && (
         <button onClick={ImageToGif}>Gif it!!</button>
       )} */}
       {/* <button onClick={compressMov}>mov!</button> */}
@@ -253,7 +254,7 @@ const App = (props) => {
             height="500"
             width="500"
             src={gif}
-          // unoptimized="true"
+          unoptimized="true"
           />
           <div onClick={() => {
             setActive(!active)
@@ -298,7 +299,7 @@ const App = (props) => {
             height="500"
             width="500"
             src={gif}
-          // unoptimized="true"
+           unoptimized="true"
           />
           <div onClick={() => {
             setActive(!active)

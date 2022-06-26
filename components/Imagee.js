@@ -4,39 +4,40 @@ import axios from "axios";
 import { cloud_name, server } from "../config";
 import { fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
+import { useEffect } from "react";
 
-export const useEffectOnce = (effect) => {
-  const destroyFunc = React.useRef();
-  const effectCalled = React.useRef(false);
-  const renderAfterCalled = React.useRef(false);
-  const [val, setVal] = React.useState(0);
+// export const useEffectOnce = (effect) => {
+//   const destroyFunc = React.useRef();
+//   const effectCalled = React.useRef(false);
+//   const renderAfterCalled = React.useRef(false);
+//   const [val, setVal] = React.useState(0);
 
-  if (effectCalled.current) {
-    renderAfterCalled.current = true;
-  }
+//   if (effectCalled.current) {
+//     renderAfterCalled.current = true;
+//   }
 
-  React.useEffect(() => {
-    // only execute the effect first time around
-    if (!effectCalled.current) {
-      destroyFunc.current = effect();
-      effectCalled.current = true;
-    }
+//   React.useEffect(() => {
+//     // only execute the effect first time around
+//     if (!effectCalled.current) {
+//       destroyFunc.current = effect();
+//       effectCalled.current = true;
+//     }
 
-    // this forces one render after the effect is run
-    setVal((val) => val + 1);
+//     // this forces one render after the effect is run
+//     setVal((val) => val + 1);
 
-    return () => {
-      // if the comp didn't render since the useEffect was called,
-      // we know it's the dummy React cycle
-      if (!renderAfterCalled.current) {
-        return;
-      }
-      if (destroyFunc.current) {
-        destroyFunc.current();
-      }
-    };
-  }, []);
-};
+//     return () => {
+//       // if the comp didn't render since the useEffect was called,
+//       // we know it's the dummy React cycle
+//       if (!renderAfterCalled.current) {
+//         return;
+//       }
+//       if (destroyFunc.current) {
+//         destroyFunc.current();
+//       }
+//     };
+//   }, []);
+// };
 
 const App = (props) => {
   const [gif, setGif] = React.useState(false);
@@ -61,7 +62,7 @@ const App = (props) => {
     props.complete();
   };
 
-  useEffectOnce(() => {
+  useEffect(() => {
     const x = 1200;
     const angle = 290;
     console.log(props.image.eager[0].url);
@@ -80,7 +81,7 @@ const App = (props) => {
       }, i * 2000);
     }
 
-    for (let i = 30; i < 60; i++) {
+    for (let i = 30; i < 50; i++) {
       setTimeout(async () => {
         console.log(i * 2000);
         saveFrameToFFmpeg(
@@ -94,7 +95,7 @@ const App = (props) => {
     }
 
     return () => console.log("my effect is destroying");
-  });
+  },[props.asset]);
 
   return (
     <>
