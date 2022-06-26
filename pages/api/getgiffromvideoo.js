@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         if (err) {
           return res.status(500).send(err);
         }
-        console.log("* " + video);
+        console.log(video);
         //   console.log(image.eager[0].url);
         uploadGif(video.public_id);
         //return res.status(200).send(image.public_id);
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
           if (err) {
             return res.status(500).send(err);
           }
-          console.log("* " + gif);
+          console.log(gif);
           return res.status(200).send(gif.public_id);
         }
       );

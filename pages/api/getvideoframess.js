@@ -17,6 +17,7 @@ export const config = {
 export default async function handler(req, res) {
   try {
     const link = req.body.link;
+    const asset=req.body.asset;
     //  var eager_options = {
     //   effect: "saturation:90,contrast:90",
     //  overlay: "thug_life", gravity: "faces", width: "1.0", height: "0.5", flags: "region_relative",
@@ -26,7 +27,7 @@ export default async function handler(req, res) {
       {
         transformation: [
           {
-            overlay: "thug_life",
+            overlay: asset,
             gravity: "faces",
             width: "1.0",
             height: "0.5",

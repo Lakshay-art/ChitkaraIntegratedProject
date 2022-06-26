@@ -42,7 +42,7 @@ export const useEffectOnce = (effect) => {
 const App = (props) => {
   const [gif, setGif] = React.useState(false);
   // const [called, setCalled] = React.useState(false);
-  console.log(props.ffmpeg);
+  //console.log(props.ffmpeg);
 
   var base64data;
 
@@ -53,6 +53,7 @@ const App = (props) => {
       await axios
         .post(`${server}/api/getvideoframess`, {
           link: `http://res.cloudinary.com/${cloud_name}/pg_${frame}/${public_id}.webp`,
+          asset:props.asset,
         })
         .then(
           async (res) => {

@@ -6,7 +6,14 @@ import Image from "next/image";
 import React from "react";
 import axios from "axios";
 import { server } from "../config";
-import { BtnText, ButtonGiff, Container, Container2, FlexBox, Loader } from "./Banner/Banner.styles";
+import {
+  BtnText,
+  ButtonGiff,
+  Container,
+  Container2,
+  FlexBox,
+  Loader,
+} from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
 
@@ -24,22 +31,21 @@ const App = (props) => {
   const [convertImage2, setConvertimg2] = React.useState();
   const [getThumbnails, setgetThumbnails] = React.useState([
     {
-      secure_url: '/Assets/thug_life1.png',
+      secure_url: "/Assets/thug_life1.png",
     },
     {
-      secure_url: '/Assets/img-13.png',
+      secure_url: "/Assets/img-13.png",
     },
     {
-      secure_url: '/Assets/img-12.png',
+      secure_url: "/Assets/img-12.png",
     },
     {
-      secure_url: '/Assets/img-4.png',
+      secure_url: "/Assets/img-4.png",
     },
     {
-      secure_url: '/Assets/img-9.png',
-    }
+      secure_url: "/Assets/img-9.png",
+    },
   ]);
-  const [convertvid, setConvertvid] = React.useState();
   const [gif, setGif] = React.useState(false);
   const [active, setActive] = React.useState(true);
 
@@ -56,12 +62,6 @@ const App = (props) => {
     [video]
   );
 
-  const setConvertVideo = React.useCallback(
-    (state) => {
-      setConvertvid(state);
-    },
-    [convertvid]
-  );
   const setGif2 = React.useCallback(
     (state) => {
       setGif(state);
@@ -89,26 +89,42 @@ const App = (props) => {
     console.log("-------------change------------");
     console.log(props.file);
     if (props.file.length != 0) {
-      setVideo2(props.file[0].file);
+    //  setVideo2(props.file[0].file);
       let base64data;
       var reader = new FileReader();
-
-      reader.readAsDataURL(props.file[0].file);
-      // await reader.readAsDataURL(new Blob([video.buffer]));
-      reader.onloadend = function () {
-        base64data = reader.result;
-        console.log(reader);
-        axios
-          .post(`${server}/api/uploadimagee`, {
-            link: base64data,
-          })
-          .then(async (res) => {
-            setgetThumbnails(res.data.eager)
-            setConvertimg2(res.data)
-            setGif2(false);
-            //setConvert2(true);
-          });
-      };
+      if (props.type == "imagetogif") {
+        reader.readAsDataURL(props.file[0].file);
+        // await reader.readAsDataURL(new Blob([video.buffer]));
+        reader.onloadend = function () {
+          base64data = reader.result;
+          console.log(reader);
+          axios
+            .post(`${server}/api/uploadimagee`, {
+              link: base64data,
+            })
+            .then(async (res) => {
+              setgetThumbnails(res.data.eager);
+              setConvertimg2(res.data);
+              setGif2(false);
+              //setConvert2(true);
+            });
+        };
+      }
+      else{
+        reader.readAsDataURL(new Blob([props.file[0].file], { type: "image/gif" }));
+        reader.onloadend = function async() {
+          base64data = reader.result;
+          console.log(reader);
+          axios
+            .post(`${server}/api/getgiffromvideoo`, {
+              link: base64data,
+            })
+            .then((res) => {
+              setConvertimg2(res.data);
+              setGif2(false);
+            });
+        };
+      }
       array2 = [];
     }
   }, [props.file]);
@@ -167,19 +183,7 @@ const App = (props) => {
   const videoToGif = async () => {
     var reader = new FileReader();
     let base64data;
-    reader.readAsDataURL(new Blob([video], { type: "image/gif" }));
-    reader.onloadend = function async() {
-      base64data = reader.result;
-      console.log(reader);
-      axios
-        .post(`${server}/api/getgiffromvideoo`, {
-          link: base64data,
-        })
-        .then((res) => {
-          setConvertvid(res.data);
-          setGif2(false);
-        });
-    };
+    
   };
 
   // const ImageToGif = async () =>
@@ -200,15 +204,15 @@ const App = (props) => {
   //   setConvert2(true);
   // };
 
-  const ImageToGif = async () => {
-
-  };
-  { console.log('12' + gif) }
+  const ImageToGif = async () => {};
+  {
+    console.log("12" + gif);
+  }
   return (
     <>
-      {props.type == "videotogif" && (
+      {/* {props.type == "videotogif" && (
         <button onClick={videoToGif}>Make this Gif/Video Awesome</button>
-      )}
+      )} */}
       {/* {props.type == "imagetogif" && (
         <button onClick={ImageToGif}>Gif it!!</button>
       )} */}
@@ -237,14 +241,6 @@ const App = (props) => {
               />
             );
           })} */}
-
-        {convertvid && (
-          <Videoo
-            ffmpeg={ffmpeg}
-            complete={framesfetched}
-            public_id={convertvid}
-          />
-        )}
       </div>
 
       {gif && active && (
@@ -256,35 +252,49 @@ const App = (props) => {
             src={gif}
             unoptimized="true"
           />
-          <div onClick={() => {
-            setActive(!active)
-          }}>x</div>
+          <div
+            onClick={() => {
+              setActive(!active);
+            }}
+          >
+            x
+          </div>
         </div>
       )}
-      {!gif && <div className={styles.finaloutput2}>
-        <Image
-          className={styles.finalgif}
-          height="450"
-          width="500"
-          src={'/Assets/Banner.webp'}
-        // unoptimized="true"
-        />
-      </div>}
-      <Container >
-        {console.log(getThumbnails)}{
-          <Filter data={getThumbnails} image={convertImage2} ffmpeg={ffmpeg} complete={framesfetched} />
+      {!gif && (
+        <div className={styles.finaloutput2}>
+          <Image
+            className={styles.finalgif}
+            height="450"
+            width="500"
+            src={"/Assets/Banner.webp"}
+            // unoptimized="true"
+          />
+        </div>
+      )}
+      <Container>
+        {console.log(getThumbnails)}
+        {
+          <Filter
+            data={getThumbnails}
+            image={convertImage2}
+            ffmpeg={ffmpeg}
+            complete={framesfetched}
+            type={props.type}
+          />
         }
-
       </Container>
-      {!gif && <div className={styles.finaloutput}>
-        <Image
-          className={styles.finalgif}
-          height="450"
-          width="500"
-          src={'/Assets/loader-2.gif'}
-        // unoptimized="true"
-        />
-      </div>}
+      {!gif && (
+        <div className={styles.finaloutput}>
+          <Image
+            className={styles.finalgif}
+            height="450"
+            width="500"
+            src={"/Assets/loader-2.gif"}
+            // unoptimized="true"
+          />
+        </div>
+      )}
       {/* //audio
                 <audio controls>
                 <source src={gif} type="audio/ogg"/>
@@ -292,10 +302,8 @@ const App = (props) => {
                 Your browser does not support the audio tag.
                 </audio> */}
 
-
       {gif && (
-
-        < div className={styles.finaloutput}>
+        <div className={styles.finaloutput}>
           <Image
             className={styles.finalgif}
             height="500"
@@ -303,18 +311,15 @@ const App = (props) => {
             src={gif}
             unoptimized="true"
           />
-          <a href='/Assets/thug_life1.png' download='File'>Donwload here</a>
+          <a href="/Assets/thug_life1.png" download="File">
+            Donwload here
+          </a>
         </div>
-      )
-
-      }
+      )}
       {/* 
       <div onClick={() => {
         setActive(!active)
       }}>x</div> */}
-
-
-
     </>
   );
 };
