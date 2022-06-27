@@ -53,7 +53,7 @@ const App = (props) => {
       await axios
         .post(`${server}/api/getvideoframess`, {
           link: `http://res.cloudinary.com/${cloud_name}/pg_${frame}/${public_id}.webp`,
-          asset:props.asset,
+          asset: props.asset,
         })
         .then(
           async (res) => {

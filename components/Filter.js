@@ -73,7 +73,8 @@ const Filter = (props) => {
         ffmpeg={props.ffmpeg}
         complete={props.complete}
         public_id={convertvid}
-        asset={selected}
+        asset={assets[selected]}
+        height={height[selected]}
       />
     )}
     <Filters>

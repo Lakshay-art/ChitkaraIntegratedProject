@@ -13,6 +13,7 @@ import {
   Download,
   FlexBox,
   Loader,
+  Mobd,
 } from "./Banner/Banner.styles";
 import { shadow } from "@cloudinary/url-gen/actions/effect";
 import Filter from "./Filter";
@@ -250,25 +251,31 @@ const App = (props) => {
           })} */}
       </div>
 
-      {gif && active && (
+      {!gif && active && (
         <div className={styles.finaloutput2}>
           <Image
             className={styles.finalgif}
             height="500"
             width="500"
-            src={gif}
+            // src={gif}
+            src={'Assets/loader-3.gif'}
             unoptimized="true"
           />
-          <div
+          <Mobd>
+            <a href={`${gif}`} download='File' className={styles.anchor}>
+              <Image src="/Assets/d-1.png" height="60px" width={'60px'} />
+            </a>
+          </Mobd>
+          {/* <div
             onClick={() => {
               setActive(!active);
             }}
           >
             x
-          </div>
+          </div> */}
         </div>
       )}
-      {!gif && (
+      {gif && (
         <div className={styles.finaloutput2}>
           <Image
             className={styles.finalgif}
@@ -295,7 +302,7 @@ const App = (props) => {
 
       {console.log(`${loader}`)}
 
-      {!gif && <div className={styles.finaloutput}>
+      {gif && <div className={styles.finaloutput}>
         <Image
           className={styles.finalgif}
           height="450px"
