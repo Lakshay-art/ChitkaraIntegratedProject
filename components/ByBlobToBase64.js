@@ -61,7 +61,10 @@ const App = (props) => {
     [ready]
   );
   const tapped = () => {
+    setGif2(false);
     setLoader('/Assets/loader-2.gif')
+  
+
   }
   const setVideo2 = React.useCallback(
     (state) => {
@@ -101,6 +104,23 @@ const App = (props) => {
       let base64data;
       var reader = new FileReader();
       if (props.type == "imagetogif") {
+        setgetThumbnails([
+          {
+            secure_url: '/Assets/loader3.gif',
+          },
+          {
+            secure_url: '/Assets/loader3.gif',
+          },
+          {
+            secure_url:  '/Assets/loader3.gif',
+          },
+          {
+            secure_url: '/Assets/loader3.gif',
+          },
+          {
+            secure_url: '/Assets/loader3.gif',
+          },
+        ])
         reader.readAsDataURL(props.file[0].file);
         // await reader.readAsDataURL(new Blob([video.buffer]));
         reader.onloadend = function () {
@@ -113,7 +133,7 @@ const App = (props) => {
             .then(async (res) => {
               setgetThumbnails(res.data.eager);
               setConvertimg2(res.data);
-              setGif2(false);
+          
               //setConvert2(true);
             });
         };
@@ -129,7 +149,7 @@ const App = (props) => {
             })
             .then((res) => {
               setConvertimg2(res.data);
-              setGif2(false);
+             
             });
         };
       }
@@ -188,11 +208,11 @@ const App = (props) => {
     }
   };
 
-  const videoToGif = async () => {
-    var reader = new FileReader();
-    let base64data;
+  // const videoToGif = async () => {
+  //   var reader = new FileReader();
+  //   let base64data;
 
-  };
+  // };
 
   // const ImageToGif = async () =>
   // {
@@ -212,10 +232,10 @@ const App = (props) => {
   //   setConvert2(true);
   // };
 
-  const ImageToGif = async () => { };
-  {
-    console.log("12" + gif);
-  }
+  // const ImageToGif = async () => { };
+  // {
+  //   console.log("12" + gif);
+  // }
   return (
     <>
       {/* {props.type == "videotogif" && (
@@ -329,7 +349,7 @@ const App = (props) => {
           />
           <Download>
             <a href={`${gif}`} download='File' className={styles.anchor}>
-              <Image src="/Assets/d-1.png" height="80px" width={'80px'} />
+              <Image src="/Assets/d-1.png" height="60px" width={'60px'} />
             </a>
           </Download>
         </div>

@@ -271,16 +271,20 @@ overflow: hidden;
 }
 `
 export const Download = styled.div`
-filter: blur(8px);
--webkit-filter: blur(1px);
+//backdrop-filter: blur(8px);
+// -webkit-filter: blur(1px);
 background: rgb(59,200,180);
 background: linear-gradient(180deg, rgba(59,200,180,0.8169861694677871) 0%, rgba(230,230,230,0.8337928921568627) 100%);
 position:absolute;
 // top:85%;
-border-radius:15px;
-right:20px;
-bottom: -43px;
+border-radius:50%;
+right:-20px;
+bottom: -30px;
 text-align:center;
+width:60px;
+height:60px;
+padding:10px;
+// margin:auto;
 
 transform: translate(-50%, -50%);
   // -ms-transform: translate(-50%, -50%);
@@ -288,9 +292,13 @@ transform: translate(-50%, -50%);
 `
 export const Mobd = styled.div`
 position: absolute;
-border-radius:15px;
-bottom: 15px;
-right: 0px;
+border-radius:50%;
+bottom: 25px;
+width:50px;
+height:50px;
+padding:10px;
+right: 15px;
+// width:50px;
 font-size: 18px;
 background: linear-gradient(180deg, rgba(59,200,180,0.8169861694677871) 0%, rgba(230,230,230,0.8337928921568627) 100%);
 }
