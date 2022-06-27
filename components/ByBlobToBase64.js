@@ -274,7 +274,7 @@ const App = (props) => {
             className={styles.finalgif}
             height="450"
             width="500"
-            src={"/Assets/Banner.webp"}
+            src={loader}
           // unoptimized="true"
           />
         </div>

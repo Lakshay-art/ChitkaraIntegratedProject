@@ -6,9 +6,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { FilterCover, Filters, FilterText, FilterWrapper, ImageWrap, Text } from "./Banner/Banner.styles";
 
-const Desc = ["Thug Life", "Happy Birthday", "Squid Game1", "Squid Game2", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3"]
-const assets = ["thug_life", "birthdayhat", "squidmask1", "squidmask2", "squidmask3", "squidmask1", "squidmask2", "squidmask3", "squidmask3"]
-
+const Desc = ["Thug Life", "Squid Game1", "Squid Game2", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3"]
+const assets = ["thug_life", "squidmask1", "squidmask2", "squidmask3", "squidmask1", "squidmask2", "squidmask3", "squidmask3"]
+const height = ["0.5", "1.0", "1.0", "1.0", "1.0", "1.0", "1.0", "1.0"]
 const Filter = (props) => {
   const [convertimg, setConvertimg] = React.useState();
   const [convertvid, setConvertvid] = React.useState();
@@ -26,13 +26,15 @@ const Filter = (props) => {
     },
     [convertvid]
   );
-  const tap = (asset) => {
+  const tap = (index) => {
     props.type == "imagetogif" ?
       setConvertImg(props.image) :
       setConvertVideo(props.image)
-    setSelected(asset)
+    setSelected(index)
+
     props.tapped()
   }
+
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(props.data)
@@ -64,7 +66,7 @@ const Filter = (props) => {
 
   return (< FilterCover >
     {convertimg && (
-      <Imagee ffmpeg={props.ffmpeg} complete={props.complete} image={convertimg} asset={selected} />
+      <Imagee ffmpeg={props.ffmpeg} complete={props.complete} image={convertimg} asset={assets[selected]} height={height[selected]} />
     )}
     {convertvid && (
       <Videoo
@@ -80,7 +82,7 @@ const Filter = (props) => {
           return (<>
             <FilterWrapper>
               <ImageWrap onClick={() => {
-                tap(assets[index])
+                tap(index)
               }}   >
                 <Image src={item.secure_url} height="80px" width='80px' />
               </ImageWrap>
