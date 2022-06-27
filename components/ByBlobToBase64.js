@@ -1,9 +1,8 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
-
 import Videoo from "./Videoo";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { server } from "../config";
 import {
@@ -11,6 +10,7 @@ import {
   ButtonGiff,
   Container,
   Container2,
+  Download,
   FlexBox,
   Loader,
 } from "./Banner/Banner.styles";
@@ -26,6 +26,10 @@ var array2 = [];
 const App = (props) => {
   const [ready, setReady] = React.useState(false);
   const [array1, setArray1] = React.useState([]);
+  const [loader, setLoader] = React.useState('/Assets/loader-3.gif');
+  // useEffect(() => {
+  //   props.file.length != 0 ? setLoader('/Assets/loader-3.gif') : setLoader('/Assets/Banner.webp')
+  // })
   // const [array2, setArray2] = React.useState([]);
   const [video, setVideo] = React.useState(false);
   const [convertImage2, setConvertimg2] = React.useState();
@@ -55,6 +59,9 @@ const App = (props) => {
     },
     [ready]
   );
+  const tapped = () => {
+    setLoader('/Assets/loader-2.gif')
+  }
   const setVideo2 = React.useCallback(
     (state) => {
       setVideo(state);
@@ -89,7 +96,7 @@ const App = (props) => {
     console.log("-------------change------------");
     console.log(props.file);
     if (props.file.length != 0) {
-    //  setVideo2(props.file[0].file);
+      //  setVideo2(props.file[0].file);
       let base64data;
       var reader = new FileReader();
       if (props.type == "imagetogif") {
@@ -110,7 +117,7 @@ const App = (props) => {
             });
         };
       }
-      else{
+      else {
         reader.readAsDataURL(new Blob([props.file[0].file], { type: "image/gif" }));
         reader.onloadend = function async() {
           base64data = reader.result;
@@ -183,7 +190,7 @@ const App = (props) => {
   const videoToGif = async () => {
     var reader = new FileReader();
     let base64data;
-    
+
   };
 
   // const ImageToGif = async () =>
@@ -204,7 +211,7 @@ const App = (props) => {
   //   setConvert2(true);
   // };
 
-  const ImageToGif = async () => {};
+  const ImageToGif = async () => { };
   {
     console.log("12" + gif);
   }
@@ -268,7 +275,7 @@ const App = (props) => {
             height="450"
             width="500"
             src={"/Assets/Banner.webp"}
-            // unoptimized="true"
+          // unoptimized="true"
           />
         </div>
       )}
@@ -281,20 +288,23 @@ const App = (props) => {
             ffmpeg={ffmpeg}
             complete={framesfetched}
             type={props.type}
+            tapped={tapped}
           />
         }
       </Container>
-      {!gif && (
-        <div className={styles.finaloutput}>
-          <Image
-            className={styles.finalgif}
-            height="450"
-            width="500"
-            src={"/Assets/loader-2.gif"}
-            // unoptimized="true"
-          />
-        </div>
-      )}
+
+      {console.log(`${loader}`)}
+
+      {!gif && <div className={styles.finaloutput}>
+        <Image
+          className={styles.finalgif}
+          height="450px"
+          width="500px"
+          src={loader}
+        // unoptimized="true"
+        />
+      </div>}
+
       {/* //audio
                 <audio controls>
                 <source src={gif} type="audio/ogg"/>
@@ -311,9 +321,11 @@ const App = (props) => {
             src={gif}
             unoptimized="true"
           />
-          <a href="/Assets/thug_life1.png" download="File">
-            Donwload here
-          </a>
+          <Download>
+            <a href={`${gif}`} download='File' className={styles.anchor}>
+              <Image src="/Assets/d-1.png" height="80px" width={'80px'} />
+            </a>
+          </Download>
         </div>
       )}
       {/* 
