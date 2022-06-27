@@ -250,15 +250,14 @@ const App = (props) => {
             );
           })} */}
       </div>
-
-      {!gif && active && (
+      {gif && active && (
         <div className={styles.finaloutput2}>
           <Image
             className={styles.finalgif}
             height="500"
             width="500"
-            // src={gif}
-            src={'Assets/loader-3.gif'}
+            src={gif}
+            // src={'Assets/loader-3.gif'}
             unoptimized="true"
           />
           <Mobd>
@@ -275,7 +274,7 @@ const App = (props) => {
           </div> */}
         </div>
       )}
-      {gif && (
+      {!gif && (
         <div className={styles.finaloutput2}>
           <Image
             className={styles.finalgif}
@@ -302,7 +301,7 @@ const App = (props) => {
 
       {console.log(`${loader}`)}
 
-      {gif && <div className={styles.finaloutput}>
+      {!gif && <div className={styles.finaloutput}>
         <Image
           className={styles.finalgif}
           height="450px"
