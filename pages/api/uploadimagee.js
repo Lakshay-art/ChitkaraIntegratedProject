@@ -24,7 +24,7 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
       // [
       //   {
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       //     flags: ["region_relative", "no_overflow"],
       //     y: "-50",
       //   },
-      //   { gravity: "face", height: 150, width: 150, crop: "thumb" },
+      //   { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       // ],
       [
         {
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
           height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 120, width: 120, crop: "thumb" },
+        { gravity: "face", height: 120, width: 120, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
           height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 120, width: 120, crop: "thumb" },
+        { gravity: "face", height: 120, width: 120, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -65,7 +65,7 @@ export default async function handler(req, res) {
           height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 120, width: 120, crop: "thumb" },
+        { gravity: "face", height: 120, width: 120, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -75,7 +75,7 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -85,7 +85,7 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -95,7 +95,7 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
     ];
     const link = req.body.link;
