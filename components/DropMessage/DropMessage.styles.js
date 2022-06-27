@@ -3,8 +3,8 @@ export const WrapText = styled.div`
 postition:relative;
 right:0;
 bottom:0;
-background: rgb(34,193,195);
-background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(36,61,122,1) 100%);
+background-image: linear-gradient(to left top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+
 border-radius:12px;
 border:2px solid grey;
 box-shadow: 7px 7px 4px grey;
@@ -14,7 +14,7 @@ height:45px;
 @media (max-width:485px)
 {
     width:90vw;
-    height:100%;
+    height:45px;
 float:left;
 
 }
