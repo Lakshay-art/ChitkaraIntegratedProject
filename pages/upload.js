@@ -9,6 +9,7 @@ import Banner from '../components/Banner/Banner';
 import { Button, Flex, FlexBox, Wrap, WrapBox } from '../components/Banner/Banner.styles';
 import Filter from '../components/Filter';
 import DropMessage from '../components/DropMessage/DropMessage';
+import About from './about';
 
 // import ByBase64 from '../components/ByBase64'
 
@@ -32,6 +33,7 @@ const App = () => {
           </Flex>
           <Pintura type={type} />  </Layout>
         <DropMessage />
+        <About />
       </WrapBox>
       {/* <ByBase64/> */}
 
