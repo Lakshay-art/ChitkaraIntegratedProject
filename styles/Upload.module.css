@@ -11,6 +11,7 @@
 }
 .finaloutput{
    padding-top: 30px;
+   position: relative;
   overflow: auto;
      width:45vw;
   display: flex;
