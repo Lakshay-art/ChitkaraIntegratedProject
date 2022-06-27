@@ -21,6 +21,7 @@
 }
 .finaloutput2{
     padding: 15px 0px;
+    position: relative;
    overflow: auto;
       width:45vw;
    display: none;
