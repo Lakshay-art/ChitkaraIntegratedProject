@@ -78,7 +78,7 @@ const App = (props) => {
           angle - 10 * i,
           props.asset
         );
-      }, i * 2000);
+      }, i * 900);
     }
 
     for (let i = 30; i < 50; i++) {
@@ -91,7 +91,7 @@ const App = (props) => {
           0,
         props.asset
         );
-      }, i * 2000);
+      }, i * 900);
     }
 
     return () => console.log("my effect is destroying");

@@ -52,9 +52,8 @@ const App = (props) => {
       console.log(delay);
       await axios
         .post(`${server}/api/getvideoframess`, {
-          link: `http://res.cloudinary.com/${cloud_name}/q_auto:eco/${frame}/${public_id}.webp`,
+          link: `http://res.cloudinary.com/${cloud_name}/q_auto:eco/pg_${frame}/${public_id}.webp`,
           asset:props.asset,
-          height:props.height,
         })
         .then(
           async (res) => {
