@@ -1,6 +1,5 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import styles from "../styles/Upload.module.css";
-
 import Videoo from "./Videoo";
 import Image from "next/image";
 import React, { useEffect } from "react";
@@ -11,6 +10,7 @@ import {
   ButtonGiff,
   Container,
   Container2,
+  Download,
   FlexBox,
   Loader,
 } from "./Banner/Banner.styles";
@@ -288,6 +288,7 @@ const App = (props) => {
             ffmpeg={ffmpeg}
             complete={framesfetched}
             type={props.type}
+            tapped={tapped}
           />
         }
       </Container>
@@ -317,9 +318,7 @@ const App = (props) => {
             className={styles.finalgif}
             height="500"
             width="500"
-            // src={gif}
-            src={'/Assets/loader-3.gif'}
-
+            src={gif}
             unoptimized="true"
           />
           <Download>
