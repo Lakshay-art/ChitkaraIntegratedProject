@@ -11,19 +11,22 @@
 }
 .finaloutput{
    padding-top: 30px;
+   position: relative;
   overflow: auto;
      width:45vw;
   display: flex;
   justify-content: center;
   margin-left: 20px;
-
+  max-width: 500px;
 }
 .finaloutput2{
     padding: 15px 0px;
+    position: relative;
    overflow: auto;
       width:45vw;
    display: none;
   margin-left: 20px;
+  max-width: 500px;
 
 
  }
@@ -38,11 +41,15 @@
           width:80%;
           margin: auto;
           display:none;
+  max-width: 500px;
+
     }
     .finaloutput2{
         width:80%;
         margin:auto;
        display: flex;
+  max-width: 500px;
+
     }
 
  }

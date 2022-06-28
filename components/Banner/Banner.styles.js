@@ -170,7 +170,7 @@ export const Container = styled.div`
 // export const Container2 = styled.div`
 // @media (min-width:468px){
 //  display:none;
-    
+
 //   }
 // `
 export const WrapBox = styled.div`
@@ -268,5 +268,38 @@ overflow: hidden;
 100% {
     width: 100%;
 }
+}
+`
+export const Download = styled.div`
+//backdrop-filter: blur(8px);
+// -webkit-filter: blur(1px);
+background: rgb(59,200,180);
+background: linear-gradient(180deg, rgba(59,200,180,0.8169861694677871) 0%, rgba(230,230,230,0.8337928921568627) 100%);
+position:absolute;
+// top:85%;
+border-radius:50%;
+right:-20px;
+bottom: -30px;
+text-align:center;
+width:60px;
+height:60px;
+padding:10px;
+// margin:auto;
+
+transform: translate(-50%, -50%);
+  // -ms-transform: translate(-50%, -50%);
+  // text-align: center;
+`
+export const Mobd = styled.div`
+position: absolute;
+border-radius:50%;
+bottom: 25px;
+width:50px;
+height:50px;
+padding:10px;
+right: 15px;
+// width:50px;
+font-size: 18px;
+background: linear-gradient(180deg, rgba(59,200,180,0.8169861694677871) 0%, rgba(230,230,230,0.8337928921568627) 100%);
 }
 `

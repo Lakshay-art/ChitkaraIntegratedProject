@@ -18,6 +18,7 @@ export default async function handler(req, res) {
   try {
     const link = req.body.link;
     const asset=req.body.asset;
+    const height=req.body.height;
     //  var eager_options = {
     //   effect: "saturation:90,contrast:90",
     //  overlay: "thug_life", gravity: "faces", width: "1.0", height: "0.5", flags: "region_relative",
@@ -30,10 +31,10 @@ export default async function handler(req, res) {
             overlay: asset,
             gravity: "faces",
             width: "1.0",
-            height: "0.5",
+            height: height,
             flags: "region_relative",
           },
-          { effect: "auto_contrast", format:"webp" },
+          { effect: "auto_contrast", format:"webp" ,quality:"auto"},
         ],
       },
       (err, image) => {

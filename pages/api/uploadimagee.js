@@ -4,7 +4,7 @@ export const config = {
     bodyParser: {
       sizeLimit: "500mb",
     },
-    responseLimit: "500mb", 
+    responseLimit: "500mb",
   },
 };
 export default async function handler(req, res) {
@@ -24,19 +24,19 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
-      [
-        {
-          overlay: "birthdayhat",
-          gravity: "face",
-          width: "1.0",
-          height: "1.0",
-          flags: ["region_relative", "no_overflow"],
-          y: "-50",
-        },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
-      ],
+      // [
+      //   {
+      //     overlay: "birthdayhat",
+      //     gravity: "face",
+      //     width: "1.0",
+      //     height: "1.0",
+      //     flags: ["region_relative", "no_overflow"],
+      //     y: "-50",
+      //   },
+      //   { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
+      // ],
       [
         {
           overlay: "squidmask1",
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
           height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 120, width: 120, crop: "thumb" },
+        { gravity: "face", height: 120, width: 120, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -55,17 +55,17 @@ export default async function handler(req, res) {
           height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 120, width: 120, crop: "thumb" },
+        { gravity: "face", height: 120, width: 120, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
           overlay: "squidmask3",
           gravity: "face",
           width: "1.0",
-          height: "0.5",
+          height: "1.0",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 120, width: 120, crop: "thumb" },
+        { gravity: "face", height: 120, width: 120, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -75,7 +75,7 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -85,7 +85,7 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
       [
         {
@@ -95,7 +95,7 @@ export default async function handler(req, res) {
           height: "0.5",
           flags: ["region_relative", "no_overflow"],
         },
-        { gravity: "face", height: 150, width: 150, crop: "thumb" },
+        { gravity: "face", height: 150, width: 150, crop: "thumb" ,quality:"auto"},
       ],
     ];
     const link = req.body.link;

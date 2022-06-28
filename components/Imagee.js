@@ -37,25 +37,25 @@ import { useEffect } from "react";
 //       }
 //     };
 //   }, []);
-// };
+// }; 
 
 const App = (props) => {
   const [gif, setGif] = React.useState(false);
+  console.log('1233' + props.height)
   // const [called, setCalled] = React.useState(false);
- // console.log(props.ffmpeg);
+  // console.log(props.ffmpeg);
 
   // var base64data;
   // const getLastFrame=()=>{
   //   // var reader = new FileReader();
   //   return props.ffmpeg.FS("readFile",`coutput029.png`)
   // }
-
-  const saveFrameToFFmpeg = async (public_id, name, x, angle, asset) => {
+  const saveFrameToFFmpeg = async (public_id, name, x, angle, asset, height) => {
     props.ffmpeg.FS(
       "writeFile",
       `c${name}`,
       await fetchFile(
-        `https://res.cloudinary.com/${cloud_name}/a_${angle},fl_region_relative.no_overflow,g_faces,h_0.5,l_${asset},w_1.0,x_${x},y_0/${public_id}.webp`
+        `https://res.cloudinary.com/${cloud_name}/a_${angle},fl_region_relative.no_overflow,g_faces,h_${props.height},l_${asset},w_1.0,x_${x},y_0/q_auto:eco/${public_id}.webp`
       )
     );
 
@@ -78,9 +78,8 @@ const App = (props) => {
           angle - 10 * i,
           props.asset
         );
-      }, i * 2000);
+      }, i * 900);
     }
-
     for (let i = 30; i < 50; i++) {
       setTimeout(async () => {
         console.log(i * 2000);
@@ -89,13 +88,14 @@ const App = (props) => {
           `output` + ("0000" + i).slice(-3) + ".webp",
           0,
           0,
-        props.asset
+          props.asset,
+          props.height,
         );
-      }, i * 2000);
+      }, i * 900);
     }
 
     return () => console.log("my effect is destroying");
-  },[props.asset]);
+  }, [props.asset]);
 
   return (
     <>
