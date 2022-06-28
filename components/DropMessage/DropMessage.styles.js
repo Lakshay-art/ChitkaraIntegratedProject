@@ -8,7 +8,7 @@ background-image: linear-gradient(to left top, #051937, #004d7a, #008793, #00bf7
 border-radius:12px;
 border:2px solid grey;
 box-shadow: 7px 7px 4px grey;
-align-self:center;
+align-self:flex-end;
 width:400px;
 height:45px;
 @media (max-width:485px)
