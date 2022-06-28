@@ -9,11 +9,8 @@ import Banner from '../components/Banner/Banner';
 import { Button, Flex, FlexBox, Wrap, WrapBox } from '../components/Banner/Banner.styles';
 import Filter from '../components/Filter';
 import DropMessage from '../components/DropMessage/DropMessage';
-<<<<<<< HEAD
 import About from './about';
-=======
 import Suggestion from '../components/Suggestion'
->>>>>>> main
 
 // import ByBase64 from '../components/ByBase64'
 
