@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FilterCover, Filters, FilterText, FilterWrapper, ImageWrap, Text } from "./Banner/Banner.styles";
 import styles from '../styles/Filter.module.css'
 
-const Desc = ["Thug Life", "Squid Game1", "Squid Game2", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3"]
+const Desc = ["Thug Life", "Squid Game1", "Squid Game2", "Squid Game3", "Thug Life", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3"]
 const assets = ["thug_life", "squidmask1", "squidmask2", "squidmask3", "squidmask1", "squidmask2", "squidmask3", "squidmask3"]
 const height = ["0.5", "1.0", "1.0", "1.0", "1.0", "1.0", "1.0", "1.0"]
 const Filter = (props) => {
