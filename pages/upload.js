@@ -33,7 +33,6 @@ const App = () => {
           </Flex>
           <Pintura type={type} />  </Layout>
         <DropMessage />
-        <About />
       </WrapBox>
       {/* <ByBase64/> */}
 
