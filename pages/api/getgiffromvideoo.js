@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
       {
         resource_type: "video",
-        transformation: [{ width: 600, crop: "scale" }],
+        transformation: [{ width: 600, crop: "scale",quality:"auto" }],
       },
       function (err, video) {
         if (err) {

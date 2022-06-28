@@ -1,23 +1,40 @@
 import styled from '@emotion/styled';
 export const WrapText = styled.div`
 postition:relative;
-right:0;
-bottom:0;
+// right:0;
+// bottom:0;
 background-image: linear-gradient(to left top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-
+//  margin-top:100px;
 border-radius:12px;
-border:2px solid grey;
-box-shadow: 7px 7px 4px grey;
-align-self:flex-end;
+// border:2px solid grey;
+// box-shadow: 7px 7px 4px grey;
+align-self:center;
 width:400px;
-height:45px;
+height:max-content;
+padding:10px;
+@media (max-width:1000px)
+{
+    margin-top:100px;
+    width:75vw;
+
+float:left;
+
+}@media (max-width:600px)
+{
+    margin-top:30px;
+   
+
+}
 @media (max-width:485px)
 {
-    width:90vw;
-    height:45px;
+    width:75vw;
+    margin-top:10px;
+
+   
 float:left;
 
 }
+
 `
 export const TextDrop = styled.div`
 color:black;
@@ -43,8 +60,9 @@ width:15px;
 height:20px;
 text-align:center;
 cursor:pointer;
+color:white;
 border-radius:6px;
-border:1.5px solid white;
+// border:1.5px solid white;
 &:hover{
 transform:scale(1.2);
 background:red;

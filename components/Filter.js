@@ -5,6 +5,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FilterCover, Filters, FilterText, FilterWrapper, ImageWrap, Text } from "./Banner/Banner.styles";
+import styles from '../styles/Filter.module.css'
 
 const Desc = ["Thug Life", "Squid Game1", "Squid Game2", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3", "Squid Game3"]
 const assets = ["thug_life", "squidmask1", "squidmask2", "squidmask3", "squidmask1", "squidmask2", "squidmask3", "squidmask3"]
@@ -85,7 +86,7 @@ const Filter = (props) => {
               <ImageWrap onClick={() => {
                 tap(index)
               }}   >
-                <Image src={item.secure_url} height="80px" width='80px' />
+                <Image className={styles.image} src={item.secure_url} height="80px" width='80px' />
               </ImageWrap>
               <FilterText>
                 {Desc[index]}
