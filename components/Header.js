@@ -10,7 +10,7 @@ const Header = () => {
           <a className={headerStyles.a}>
             Home
           </a></Link>
-        <Link className={headerStyles.Link} href='/About' target="as_blank">
+        <Link className={headerStyles.Link} href='/Aboutus' target="as_blank">
           <a className={headerStyles.a} >
             About
           </a>
